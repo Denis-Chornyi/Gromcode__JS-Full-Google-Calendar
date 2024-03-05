@@ -1,0 +1,207 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.button {
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.icon-button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal__content {
+  background: #fff;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(204, 204, 204, 0.2705882353);
+  z-index: 10;
+}
+
+.popup__content {
+  position: absolute;
+  background: #fff;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.modal {
+  display: none;
+}
+
+.popup {
+  display: none;
+}
+
+.header {
+  display: flex;
+  margin-top: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #808080;
+}
+.header .create-event-btn {
+  margin: 0 30px;
+}
+
+.navigation__nav-icon {
+  padding-left: 20px;
+}
+
+.calendar {
+  padding: 20px 0;
+}
+.calendar__header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 48px;
+}
+.calendar__time-scale {
+  position: absolute;
+  top: 21%;
+}
+.calendar__day-label {
+  color: #808080;
+  text-align: center;
+}
+.calendar__week {
+  display: flex;
+  width: 97%;
+  height: 5px;
+  position: absolute;
+  top: 17%;
+  left: 48px;
+}
+.calendar__day {
+  width: 14.27%;
+}
+.calendar__time-slot {
+  height: 60px;
+  width: 100%;
+  border: solid #808080;
+  border-width: 0 1px 1px 0;
+}
+
+.day-label {
+  width: 14.3%;
+}
+.day-label__day-number {
+  padding-top: 5px;
+  height: 40px;
+  width: 40px;
+  margin-top: 8px;
+  font-size: 26px;
+  display: inline-block;
+}
+.day-label__day-number:hover {
+  border-radius: 100%;
+  background-color: #4169e1;
+  color: #fff;
+}
+.day-label__day-name {
+  display: block;
+}
+.day-label__day-name:hover {
+  color: #4169e1;
+  background-color: transparent;
+}
+
+.time-slot {
+  display: flex;
+  align-items: end;
+  height: 60px;
+}
+
+.create-event {
+  text-align: right;
+}
+.create-event__close-btn {
+  transform: rotate(45deg);
+  background-color: transparent;
+  border: 0;
+}
+.create-event-btn__icon {
+  margin-right: 8px;
+}
+
+input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+.event-form__field {
+  text-align: left;
+  border: 0;
+  outline: 0;
+  margin-bottom: 80px;
+}
+.event-form__field-title {
+  width: 88%;
+  border: solid #4169e1;
+  border-width: 0 0 2px 0;
+  margin-bottom: 70px;
+}
+.event-form__time-icon {
+  margin-right: 20px;
+}
+.event-form__burger {
+  position: absolute;
+  margin-top: 6px;
+}
+.event-form__burger-menu {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background-color: #000;
+  margin-bottom: 4px;
+}
+.event-form__burger-menu-bottom {
+  width: 12px;
+}
+.event-form__textarea {
+  width: 90%;
+}
+.event-form__submit-btn {
+  background-color: #4169e1;
+  border: 0;
+  padding: 6px 22px;
+  color: #fff;
+  border-radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  margin-top: $unit * 7;
+  padding-bottom: $unit * 4;
+  border-bottom: 1px solid $color-text-grey;
+
+  .create-event-btn {
+    margin: 0 $unit * 15;
+  }
+}
+
+.navigation {
+  &__nav-icon {
+    padding-left: $unit * 10;
+  }
+}
