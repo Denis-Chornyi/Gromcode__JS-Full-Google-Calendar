@@ -85,7 +85,7 @@
 }
 .calendar__time-scale {
   position: absolute;
-  top: 21%;
+  top: 18.3%;
 }
 .calendar__day-label {
   color: #808080;
@@ -94,7 +94,6 @@
 .calendar__week {
   display: flex;
   width: 97%;
-  height: 5px;
   position: absolute;
   top: 17%;
   left: 48px;
@@ -193,6 +192,10 @@ input::-webkit-calendar-picker-indicator {
   padding: 6px 22px;
   color: #fff;
   border-radius: 4px;
+}
+
+.event {
+  position: absolute;
 }
 
 * {

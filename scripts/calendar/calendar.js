@@ -25,6 +25,7 @@ export const renderWeek = () => {
     )
     .join("");
   document.querySelector(".calendar__week").innerHTML = calendarWeek;
+  renderEvents()
   return getItem("displayedWeekStart").getDate();
   // функция должна сгенерировать разметку недели в виде строки и вставить ее на страницу (в .calendar__week)
   // разметка недели состоит из 7 дней (.calendar__day) отображаемой недели

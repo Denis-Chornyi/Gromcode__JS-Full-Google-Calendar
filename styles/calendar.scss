@@ -9,7 +9,7 @@
 
   &__time-scale {
     position: absolute;
-    top: 21%;
+    top: 18.3%;
   }
 
   &__day-label {
@@ -20,7 +20,7 @@
   &__week {
     display: flex;
     width: 97%;
-    height: 5px;
+
     position: absolute;
     top: 17%;
     left: $unit * 24;

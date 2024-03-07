@@ -7,8 +7,7 @@ const eventFormElem = document.querySelector(".event-form");
 const closeEventFormBtn = document.querySelector(".create-event__close-btn");
 
 function clearEventForm() {
-  
-  closeModal()
+  closeModal();
   // ф-ция должна очистить поля формы от значений
 }
 
@@ -17,14 +16,18 @@ function onCloseEventForm() {
 }
 
 function onCreateEvent(event) {
-  setItem(event, {
+  const isElem = event.target.classList.contains("event-form__submit-btn");
+  if (!isElem) return;
+  const events = getItem("events") || [];
+  const newEvents = events.concat({
     id: Math.random(),
-    title: "",
-    description: "",
-    start: "",
-    end: "",
+    title,
+    description,
+    start: getDateTime(data, startTime),
+    end: getDateTime(data, endTime),
   });
-
+  setItem("events", newEvents);
+  renderEvents();
   // задача этой ф-ции только добавить новое событие в массив событий, что хранится в storage
   // создавать или менять DOM элементы здесь не нужно. Этим займутся другие ф-ции
   // при подтверждении формы нужно считать данные с формы
