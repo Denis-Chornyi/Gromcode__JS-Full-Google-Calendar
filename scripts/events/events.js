@@ -70,9 +70,7 @@ export const renderEvents = (e) => {
   // каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
   // не забудьте удалить с календаря старые события перед добавлением новых
 };
-document
-  .querySelector(".event-form__submit-btn")
-  .addEventListener("click", createEventElement);
+
 function onDeleteEvent() {
   const events = getItem("events");
   const eventDelete = getItem("eventIdToDelete");
