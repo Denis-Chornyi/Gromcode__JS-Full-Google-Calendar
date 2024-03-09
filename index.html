@@ -32,10 +32,16 @@
         <button data-direction="today" class="navigation__today-btn button">
           Today
         </button>
-        <button data-direction="prev" class="icon-button navigation__nav-icon left">
+        <button
+          data-direction="prev"
+          class="icon-button navigation__nav-icon left"
+        >
           <i class="fas fa-chevron-left"></i>
         </button>
-        <button data-direction="next" class="icon-button navigation__nav-icon right">
+        <button
+          data-direction="next"
+          class="icon-button navigation__nav-icon right"
+        >
           <i class="fas fa-chevron-right"></i>
         </button>
         <span class="navigation__displayed-month">Jun - Jul 2019</span>
@@ -59,7 +65,7 @@
               type="text"
               name="title"
               placeholder="Title"
-              class="event-form__field-title"
+              class="event-form__field event-form__field-title"
             />
             <div class="event-form__time">
               <i class="far fa-clock event-form__time-icon"></i>
@@ -89,6 +95,7 @@
     <div class="popup hidden overlay">
       <div class="popup__overlay"></div>
       <div class="popup__content">
+        <i class="fas fa-trash"></i>
         <button class="delete-event-btn">Delete</button>
       </div>
     </div>

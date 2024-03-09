@@ -4,11 +4,11 @@ import { renderEvents } from "../events/events.js";
 import { createNumbersArray } from "../common/createNumbersArray.js";
 
 const generateDay = () => {
-  const hoursOfDay = createNumbersArray(1, 24)
+  const hoursOfDay = createNumbersArray(0, 24)
     .map(
-      (hour) =>
+      (timeSlot) =>
         `<div class="calendar__time-slot"
-        data-time="${hour}">   
+        data-time="${timeSlot}">   
           </div>`
     )
     .join("");
@@ -17,16 +17,18 @@ const generateDay = () => {
   // разметка состоит из 24 часовых временных слотов (.calendar__time-slot)
 };
 export const renderWeek = () => {
-  const calendarWeek = generateWeekRange(getItem("displayedWeekStart"))
+  const startDate = getItem("displayedWeekStart");
+  const daysList = generateWeekRange(startDate);
+  const dayTemplateString = generateDay();
+  const weekElementString = daysList
     .map(
-      (DayOfWeekNumber) =>
-        `<div class="calendar__day"
-      data-day="${DayOfWeekNumber.getDate()}">${generateDay()} </div>`
+      (day) =>
+        `<div class="calendar__day" data-day="${day.getDate()}">${dayTemplateString}</div>`
     )
     .join("");
-  document.querySelector(".calendar__week").innerHTML = calendarWeek;
-  renderEvents()
-  return getItem("displayedWeekStart").getDate();
+  document.querySelector(".calendar__week").innerHTML = weekElementString;
+  renderEvents();
+
   // функция должна сгенерировать разметку недели в виде строки и вставить ее на страницу (в .calendar__week)
   // разметка недели состоит из 7 дней (.calendar__day) отображаемой недели
   // массив дней, которые нужно отобразить, считаем ф-цией generateWeekRange на основе displayedWeekStart из storage

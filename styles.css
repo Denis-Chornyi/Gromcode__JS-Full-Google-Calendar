@@ -53,11 +53,7 @@
   border-radius: 8px;
 }
 
-.modal {
-  display: none;
-}
-
-.popup {
+.hidden {
   display: none;
 }
 
@@ -68,11 +64,14 @@
   border-bottom: 1px solid #808080;
 }
 .header .create-event-btn {
-  margin: 0 30px;
+  margin: 0 30px 0 3%;
 }
 
 .navigation__nav-icon {
   padding-left: 20px;
+}
+.navigation__displayed-month {
+  margin-left: 10px;
 }
 
 .calendar {
@@ -81,11 +80,12 @@
 .calendar__header {
   display: flex;
   justify-content: space-between;
-  padding-left: 48px;
+  padding-left: 3%;
 }
 .calendar__time-scale {
   position: absolute;
   top: 18.3%;
+  left: 1%;
 }
 .calendar__day-label {
   color: #808080;
@@ -96,12 +96,13 @@
   width: 97%;
   position: absolute;
   top: 17%;
-  left: 48px;
+  left: 3%;
 }
 .calendar__day {
-  width: 14.27%;
+  width: 14.3%;
 }
 .calendar__time-slot {
+  position: relative;
   height: 60px;
   width: 100%;
   border: solid #808080;
@@ -195,7 +196,25 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .event {
+  width: 95%;
   position: absolute;
+  background-color: #4169e1;
+  border-radius: 6px;
+  color: #fff;
+  overflow: hidden;
+  z-index: 1;
+}
+.event__title {
+  padding: 8px;
+}
+.event__time {
+  font-weight: 300;
+  padding-left: 8px;
+}
+
+.delete-event-btn {
+  background-color: transparent;
+  border: 0;
 }
 
 * {

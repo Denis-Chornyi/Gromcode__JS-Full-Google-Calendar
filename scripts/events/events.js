@@ -6,10 +6,19 @@ const weekElem = document.querySelector(".calendar__week");
 const deleteEventBtn = document.querySelector(".delete-event-btn");
 
 function handleEventClick(event) {
+  let isEvent = event.target.classList.contains("event");
+
+  const xPosition = event.clientX;
+  const yPosition = event.clientY;
+  if (isEvent) {
+    openPopup(xPosition, yPosition);
+    setItem("eventIdToDelete", event.target.dataset.eventId);
+  } else {
+    return;
+  }
   // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
   // установите eventIdToDelete с id события в storage
 }
-
 function removeEventsFromCalendar() {
   // ф-ция для удаления всех событий с календаря
 }
@@ -19,10 +28,10 @@ const createEventElement = (event) => {
 
   const eventElem = document.createElement("div");
   eventElem.dataset.eventId = id;
-  eventElem.style.top = start.getMinutes();
-  let resultHeight = end - start;
-  resultHeight /= 60000;
-  eventElem.style.height = resultHeight.toFixed();
+  eventElem.style.top = start.getMinutes() + "px";
+  let eventHeight = end - start;
+  eventHeight /= 60000;
+  eventElem.style.height = eventHeight.toFixed() + "px";
   eventElem.classList.add("event");
 
   const eventTitleElem = document.createElement("div");
@@ -42,25 +51,23 @@ const createEventElement = (event) => {
   // здесь для создания DOM элемента события используйте document.createElement
 };
 
-export const renderEvents = (e) => {
+export const renderEvents = () => {
+  removeEventsFromCalendar();
   const events = getItem("events") || [];
   const startDateTime = getItem("displayedWeekStart");
   const endDateTime = shmoment(startDateTime).add("days", 7).result();
-  const filterEvents = events.filter((event) => {
-    return event.start >= startDateTime && event.end < endDateTime;
-  });
-  const eventElem = document.createElement("div");
-  eventElem.classList.add("event");
-  filterEvents.find((event) => {
-    event.start.getHours() ===
-      e.target.classList.contains(".calendar__time-slot").dataset.time &&
-      event.start.getDate() ===
-        e.target.classList.contains(".calendar__day").dataset.day;
-    if (event.start < getItem("displayedWeekStart")) {
-      event = getItem("eventIdToDelete");
-    }
-    return e.target.classList.contains(".calendar__time-slot").append(event);
-  });
+  events
+    .filter((event) => {
+      return event.start >= startDateTime && event.end < endDateTime;
+    })
+    .forEach((event) => {
+      const { start } = event;
+      const eventElem = createEventElement(event);
+      const slotElem = document.querySelector(
+        `.calendar__day[data-day="${start.getDate()}"] .calendar__time-slot[data-time="${start.getHours()}"]`
+      );
+      slotElem.append(eventElem);
+    });
 
   // достаем из storage все события и дату понедельника отображаемой недели
   // фильтруем события, оставляем только те, что входят в текущую неделю
@@ -73,7 +80,16 @@ export const renderEvents = (e) => {
 
 function onDeleteEvent() {
   const events = getItem("events");
+  console.log(getItem("events"));
   const eventDelete = getItem("eventIdToDelete");
+  // events.find((eventId) => eventId === eventDelete);
+  events.filter((event) => {
+    return event.id !== eventDelete;
+  });
+  setItem("events", events);
+  closePopup();
+  renderEvents();
+  console.log(setItem("events", events));
   // достаем из storage массив событий и eventIdToDelete
   // удаляем из массива нужное событие и записываем в storage новый массив
   // закрыть попап

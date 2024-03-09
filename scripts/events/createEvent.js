@@ -7,26 +7,40 @@ const eventFormElem = document.querySelector(".event-form");
 const closeEventFormBtn = document.querySelector(".create-event__close-btn");
 
 function clearEventForm() {
-  closeModal();
+  eventFormElem.reset();
   // ф-ция должна очистить поля формы от значений
 }
 
 function onCloseEventForm() {
+  closeModal();
+  clearEventForm();
   // здесь нужно закрыть модальное окно и очистить форму
 }
 
 function onCreateEvent(event) {
-  const isElem = event.target.classList.contains("event-form__submit-btn");
-  if (!isElem) return;
+  event.preventDefault();
+  const formDate = Array.from(new FormData(eventFormElem)).reduce(
+    (acc, field) => {
+      const [name, value] = field;
+
+      return {
+        ...acc,
+        [name]: value,
+      };
+    },
+    {}
+  );
+  const { date, startTime, endTime, title, description } = formDate;
   const events = getItem("events") || [];
   const newEvents = events.concat({
     id: Math.random(),
     title,
     description,
-    start: getDateTime(data, startTime),
-    end: getDateTime(data, endTime),
+    start: getDateTime(date, startTime),
+    end: getDateTime(date, endTime),
   });
   setItem("events", newEvents);
+  onCloseEventForm();
   renderEvents();
   // задача этой ф-ции только добавить новое событие в массив событий, что хранится в storage
   // создавать или менять DOM элементы здесь не нужно. Этим займутся другие ф-ции
@@ -40,5 +54,7 @@ function onCreateEvent(event) {
 }
 
 export function initEventForm() {
+  eventFormElem.addEventListener("submit", onCreateEvent);
+  closeEventFormBtn.addEventListener("click", onCloseEventForm);
   // подпишитесь на сабмит формы и на закрытие формы
 }

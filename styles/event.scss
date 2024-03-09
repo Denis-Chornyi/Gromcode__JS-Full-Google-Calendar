@@ -1,4 +1,23 @@
 // стили отображаемого в календаре события
 .event {
+  width: 95%;
   position: absolute;
+  background-color: $color-light-blue;
+  border-radius: $unit * 3;
+  color: $color-text-white;
+  overflow: hidden;
+  z-index: 1;
+  &__title {
+    padding: $unit * 4;
+  }
+  &__time {
+    font-weight: 300;
+    padding-left: $unit * 4;
+  }
+}
+.delete-event-btn {
+  background-color: transparent;
+  border: 0;
+  
+
 }

@@ -4,12 +4,13 @@
   &__header {
     display: flex;
     justify-content: space-between;
-    padding-left: $unit * 24;
+    padding-left: 3%;
   }
 
   &__time-scale {
     position: absolute;
     top: 18.3%;
+    left: 1%
   }
 
   &__day-label {
@@ -20,15 +21,15 @@
   &__week {
     display: flex;
     width: 97%;
-
     position: absolute;
     top: 17%;
-    left: $unit * 24;
+    left: 3%;
   }
   &__day {
-    width: 14.27%;
+    width: 14.3%;
   }
   &__time-slot {
+    position: relative;
     height: $unit * 30;
     width: 100%;
     border: solid $color-text-grey;
