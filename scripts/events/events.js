@@ -7,7 +7,6 @@ const deleteEventBtn = document.querySelector(".delete-event-btn");
 
 function handleEventClick(event) {
   let isEvent = event.target.classList.contains("event");
-
   const xPosition = event.clientX;
   const yPosition = event.clientY;
   if (isEvent) {
@@ -16,6 +15,7 @@ function handleEventClick(event) {
   } else {
     return;
   }
+
   // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
   // установите eventIdToDelete с id события в storage
 }
@@ -80,16 +80,14 @@ export const renderEvents = () => {
 
 function onDeleteEvent() {
   const events = getItem("events");
-  console.log(getItem("events"));
-  const eventDelete = getItem("eventIdToDelete");
-  // events.find((eventId) => eventId === eventDelete);
-  events.filter((event) => {
-    return event.id !== eventDelete;
-  });
-  setItem("events", events);
+
+  const eventDelete = +getItem("eventIdToDelete");
+
+  const newEventsArr = events.filter((event) => event.id !== eventDelete);
+  setItem("events", newEventsArr);
   closePopup();
   renderEvents();
-  console.log(setItem("events", events));
+
   // достаем из storage массив событий и eventIdToDelete
   // удаляем из массива нужное событие и записываем в storage новый массив
   // закрыть попап
