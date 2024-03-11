@@ -8,14 +8,11 @@ const deleteEventBtn = document.querySelector(".delete-event-btn");
 function handleEventClick(event) {
   event.preventDefault();
   let isEvent = event.target.classList.contains("event");
-  const xPosition = event.clientX;
-  const yPosition = event.clientY;
-  if (isEvent) {
-    openPopup(xPosition, yPosition);
-    setItem("eventIdToDelete", event.target.dataset.eventId);
-  } else {
+  if (!isEvent) {
     return;
   }
+  openPopup(event.clientX, event.clientY);
+  setItem("eventIdToDelete", event.target.dataset.eventId);
   // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
   // установите eventIdToDelete с id события в storage
 }
