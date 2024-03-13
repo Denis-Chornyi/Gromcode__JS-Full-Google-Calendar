@@ -15,6 +15,12 @@ export const setItem = (key, value) => {
 export const getItem = (key) => storage[key];
 // ф-ция должна возвращать по ключу значения из объекта storage
 
+// export const setItemEvents = (key, value) => {
+//   localStorage.setItem(key, JSON.stringify(value));
+// };
+
+// export const getItemEvents = (key) => JSON.parse(localStorage.getItem(key));
+
 // пример объекта события
 const eventExample = {
   id: 0.7520027086457333, // id понадобится для работы с событиями
