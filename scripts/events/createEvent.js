@@ -1,10 +1,10 @@
-import { getItem, setItem } from "../common/storage.js";
-import { renderEvents } from "./events.js";
-import { getDateTime } from "../common/time.utils.js";
-import { closeModal } from "../common/modal.js";
+import { getItem, setItem } from '../common/storage.js';
+import { renderEvents } from './events.js';
+import { getDateTime } from '../common/time.utils.js';
+import { closeModal } from '../common/modal.js';
 
-const eventFormElem = document.querySelector(".event-form");
-const closeEventFormBtn = document.querySelector(".create-event__close-btn");
+const eventFormElem = document.querySelector('.event-form');
+const closeEventFormBtn = document.querySelector('.create-event__close-btn');
 
 function clearEventForm() {
   eventFormElem.reset();
@@ -19,28 +19,25 @@ function onCloseEventForm() {
 
 function onCreateEvent(event) {
   event.preventDefault();
-  const formDate = Array.from(new FormData(eventFormElem)).reduce(
-    (acc, field) => {
-      const [name, value] = field;
+  const formDate = Array.from(new FormData(eventFormElem)).reduce((acc, field) => {
+    const [name, value] = field;
 
-      return {
-        ...acc,
-        [name]: value,
-      };
-    },
-    {}
-  );
+    return {
+      ...acc,
+      [name]: value
+    };
+  }, {});
   const { date, startTime, endTime, title, description } = formDate;
 
-  const events = getItem("events") || [];
+  const events = getItem('events') || [];
   const newEvents = events.concat({
     id: Math.random(),
     title,
     description,
     start: getDateTime(date, startTime),
-    end: getDateTime(date, endTime),
+    end: getDateTime(date, endTime)
   });
-  setItem("events", newEvents);
+  setItem('events', newEvents);
   onCloseEventForm();
   renderEvents();
   // задача этой ф-ции только добавить новое событие в массив событий, что хранится в storage
@@ -55,7 +52,7 @@ function onCreateEvent(event) {
 }
 
 export function initEventForm() {
-  eventFormElem.addEventListener("submit", onCreateEvent);
-  closeEventFormBtn.addEventListener("click", onCloseEventForm);
+  eventFormElem.addEventListener('submit', onCreateEvent);
+  closeEventFormBtn.addEventListener('click', onCloseEventForm);
   // подпишитесь на сабмит формы и на закрытие формы
 }

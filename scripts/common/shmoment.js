@@ -5,7 +5,7 @@ const getMethodsNames = {
   hours: 'getHours',
   minutes: 'getMinutes',
   seconds: 'getSeconds',
-  milliseconds: 'getMilliseconds',
+  milliseconds: 'getMilliseconds'
 };
 
 const setMethodsNames = {
@@ -15,20 +15,18 @@ const setMethodsNames = {
   hours: 'setHours',
   minutes: 'setMinutes',
   seconds: 'setSeconds',
-  milliseconds: 'setMilliseconds',
+  milliseconds: 'setMilliseconds'
 };
 
 // ф-ция помогает добавить или отнять определенное количество времени от заданного
 // урпощенный аналог популярной библиотеки moment
-const shmoment = (date) => {
+const shmoment = date => {
   let result = new Date(date);
 
   const calculator = {
     add(units, value) {
       const currentUnitValue = result[getMethodsNames[units]]();
-      result = new Date(
-        result[setMethodsNames[units]](currentUnitValue + value)
-      );
+      result = new Date(result[setMethodsNames[units]](currentUnitValue + value));
       return this;
     },
     subtract(units, value) {
@@ -36,7 +34,7 @@ const shmoment = (date) => {
     },
     result() {
       return result;
-    },
+    }
   };
 
   return calculator;

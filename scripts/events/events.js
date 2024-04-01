@@ -1,48 +1,48 @@
-import { getItem, setItem } from "../common/storage.js";
-import shmoment from "../common/shmoment.js";
-import { openPopup, closePopup } from "../common/popup.js";
+import { getItem, setItem } from '../common/storage.js';
+import shmoment from '../common/shmoment.js';
+import { openPopup, closePopup } from '../common/popup.js';
 
-const weekElem = document.querySelector(".calendar__week");
-const deleteEventBtn = document.querySelector(".delete-event-btn");
+const weekElem = document.querySelector('.calendar__week');
+const deleteEventBtn = document.querySelector('.delete-event-btn');
 
 function handleEventClick(event) {
   event.preventDefault();
-  let isEvent = event.target.classList.contains("event");
+  let isEvent = event.target.classList.contains('event');
   if (!isEvent) {
     return;
   }
   openPopup(event.clientX, event.clientY);
-  setItem("eventIdToDelete", event.target.dataset.eventId);
+  setItem('eventIdToDelete', event.target.dataset.eventId);
   // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
   // установите eventIdToDelete с id события в storage
 }
 function removeEventsFromCalendar() {
-  const eventsElems = document.querySelectorAll(".event");
+  const eventsElems = document.querySelectorAll('.event');
   if (eventsElems) {
-    eventsElems.forEach((eventElem) => eventElem.remove());
+    eventsElems.forEach(eventElem => eventElem.remove());
   }
   // ф-ция для удаления всех событий с календаря
 }
 
-const createEventElement = (event) => {
+const createEventElement = event => {
   const { start, end, title, id } = event;
 
-  const eventElem = document.createElement("div");
+  const eventElem = document.createElement('div');
   eventElem.dataset.eventId = id;
-  eventElem.style.top = start.getMinutes() + "px";
+  eventElem.style.top = start.getMinutes() + 'px';
   let eventHeight = end - start;
   eventHeight /= 60000;
 
-  eventElem.style.height = eventHeight.toFixed() + "px";
-  eventElem.classList.add("event");
+  eventElem.style.height = eventHeight.toFixed() + 'px';
+  eventElem.classList.add('event');
 
-  const eventTitleElem = document.createElement("div");
+  const eventTitleElem = document.createElement('div');
   eventTitleElem.textContent = title;
-  eventTitleElem.classList.add("event__title");
+  eventTitleElem.classList.add('event__title');
 
-  const eventTimeElem = document.createElement("div");
+  const eventTimeElem = document.createElement('div');
   eventTimeElem.textContent = `${start.getHours()}:${start.getMinutes()} - ${end.getHours()}:${end.getMinutes()}`;
-  eventTimeElem.classList.add("event__time");
+  eventTimeElem.classList.add('event__time');
   eventElem.append(eventTitleElem, eventTimeElem);
 
   return eventElem;
@@ -54,14 +54,14 @@ const createEventElement = (event) => {
 
 export const renderEvents = () => {
   removeEventsFromCalendar();
-  const events = getItem("events") || [];
-  const startDateTime = getItem("displayedWeekStart");
-  const endDateTime = shmoment(startDateTime).add("days", 7).result();
+  const events = getItem('events') || [];
+  const startDateTime = getItem('displayedWeekStart');
+  const endDateTime = shmoment(startDateTime).add('days', 7).result();
   events
-    .filter((event) => {
+    .filter(event => {
       return event.start >= startDateTime && event.end < endDateTime;
     })
-    .forEach((event) => {
+    .forEach(event => {
       const { start } = event;
       const eventElem = createEventElement(event);
       const slotElem = document.querySelector(
@@ -80,12 +80,12 @@ export const renderEvents = () => {
 };
 
 function onDeleteEvent() {
-  const events = getItem("events");
+  const events = getItem('events');
 
-  const eventIdToDelete = +getItem("eventIdToDelete");
+  const eventIdToDelete = +getItem('eventIdToDelete');
 
-  const newEventsArr = events.filter((event) => event.id !== eventIdToDelete);
-  setItem("events", newEventsArr);
+  const newEventsArr = events.filter(event => event.id !== eventIdToDelete);
+  setItem('events', newEventsArr);
   closePopup();
   renderEvents();
   // достаем из storage массив событий и eventIdToDelete
@@ -94,6 +94,6 @@ function onDeleteEvent() {
   // перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
 }
 
-deleteEventBtn.addEventListener("click", onDeleteEvent);
+deleteEventBtn.addEventListener('click', onDeleteEvent);
 
-weekElem.addEventListener("click", handleEventClick);
+weekElem.addEventListener('click', handleEventClick);
