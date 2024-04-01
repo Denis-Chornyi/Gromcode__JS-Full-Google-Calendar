@@ -2,18 +2,31 @@
   display: flex;
   margin-top: $unit * 7;
   padding-bottom: $unit * 4;
-  border-bottom: 1px solid $color-text-grey;
+  border-bottom: 1px solid $color-text-dark-grey;
 
   .create-event-btn {
     margin: 0 $unit * 15 0 3%;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding-right:$unit * 8;
+    &-plus {
+      margin-right: $unit * 5;
+    }
   }
 }
 
 .navigation {
+  &__today-btn {
+    padding: $unit * 5;
+  }
   &__nav-icon {
     padding-left: $unit * 10;
   }
   &__displayed-month {
-    margin-left: $unit * 5;
+    margin-left: $unit * 15;
   }
+}
+.icon-button-left {
+  margin-left: $unit * 10;
 }

@@ -13,6 +13,7 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
+  background-color: transparent;
 }
 
 .icon-button {
@@ -63,26 +64,43 @@
   display: flex;
   margin-top: 14px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #808080;
+  border-bottom: 1px solid #565656;
 }
 .header .create-event-btn {
   margin: 0 30px 0 3%;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding-right: 16px;
+}
+.header .create-event-btn-plus {
+  margin-right: 10px;
 }
 
+.navigation__today-btn {
+  padding: 10px;
+}
 .navigation__nav-icon {
   padding-left: 20px;
 }
 .navigation__displayed-month {
-  margin-left: 10px;
+  margin-left: 30px;
+}
+
+.icon-button-left {
+  margin-left: 20px;
 }
 
 .calendar {
   padding: 20px 0;
 }
 .calendar__header {
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding-left: 3%;
+  padding-left: 4.5%;
+  z-index: 1;
 }
 .calendar__time-scale {
   position: absolute;
@@ -90,7 +108,7 @@
   left: 1%;
 }
 .calendar__day-label {
-  color: #808080;
+  color: #565656;
   text-align: center;
 }
 .calendar__week {
@@ -98,7 +116,7 @@
   width: 97%;
   position: absolute;
   top: 17%;
-  left: 3%;
+  left: 4.5%;
 }
 .calendar__day {
   width: 14.3%;
@@ -107,7 +125,7 @@
   position: relative;
   height: 60px;
   width: 100%;
-  border: solid #808080;
+  border: solid #565656;
   border-width: 0 1px 1px 0;
 }
 
@@ -122,23 +140,28 @@
   font-size: 26px;
   display: inline-block;
 }
-.day-label__day-number:hover {
-  border-radius: 100%;
-  background-color: #4169e1;
-  color: #fff;
-}
 .day-label__day-name {
   display: block;
 }
-.day-label__day-name:hover {
+
+.today-name {
   color: #4169e1;
   background-color: transparent;
+}
+
+.today-number {
+  border-radius: 100%;
+  background-color: #4169e1;
+  color: #fff;
 }
 
 .time-slot {
   display: flex;
   align-items: end;
   height: 60px;
+}
+.time-slot__time {
+  font-size: 15px;
 }
 
 .create-event {
@@ -160,7 +183,6 @@ input::-webkit-calendar-picker-indicator {
 .event-form__field {
   text-align: left;
   border: 0;
-  outline: 0;
   margin-bottom: 80px;
 }
 .event-form__field-title {

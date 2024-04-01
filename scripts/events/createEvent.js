@@ -31,6 +31,7 @@ function onCreateEvent(event) {
     {}
   );
   const { date, startTime, endTime, title, description } = formDate;
+
   const events = getItem("events") || [];
   const newEvents = events.concat({
     id: Math.random(),

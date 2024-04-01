@@ -2,19 +2,22 @@
 .calendar {
   padding: $unit * 10 0;
   &__header {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding-left: 3%;
+    padding-left: 4.5%;
+    z-index: 1;
   }
 
   &__time-scale {
     position: absolute;
     top: 18.3%;
-    left: 1%
+    left: 1%;
   }
 
   &__day-label {
-    color: $color-text-grey;
+    color: $color-text-dark-grey;
     text-align: center;
   }
 
@@ -23,7 +26,7 @@
     width: 97%;
     position: absolute;
     top: 17%;
-    left: 3%;
+    left: 4.5%;
   }
   &__day {
     width: 14.3%;
@@ -32,7 +35,7 @@
     position: relative;
     height: $unit * 30;
     width: 100%;
-    border: solid $color-text-grey;
+    border: solid $color-text-dark-grey;
     border-width: 0 1px 1px 0;
   }
 }
@@ -45,19 +48,18 @@
     margin-top: $unit * 4;
     font-size: $unit * 13;
     display: inline-block;
-
-    &:hover {
-      border-radius: 100%;
-      background-color: $color-light-blue;
-      color: $color-text-white;
-    }
   }
 
   &__day-name {
     display: block;
-    &:hover {
-      color: $color-light-blue;
-      background-color: transparent;
-    }
   }
+}
+.today-name {
+  color: $color-light-blue;
+  background-color: transparent;
+}
+.today-number {
+  border-radius: 100%;
+  background-color: $color-light-blue;
+  color: $color-text-white;
 }
