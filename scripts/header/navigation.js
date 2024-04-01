@@ -11,34 +11,25 @@ function renderCurrentMonth() {
   // отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
   // вставить в .navigation__displayed-month
 }
-const todayBtn = document.querySelector('.navigation__today-btn');
 setItem('displayedWeekStart', getStartOfWeek(new Date()));
-const calendarToday = () => {
-  if (todayBtn) {
-    setItem('displayedWeekStart', getStartOfWeek(new Date()));
-    renderWeek();
-    renderHeader();
-    renderCurrentMonth();
-  }
-};
-todayBtn.addEventListener('click', calendarToday);
 const onChangeWeek = event => {
-  const isList = event.target.classList.contains('navigation__nav-icon');
-  if (!isList) {
+  const buttonElem = event.target.closest('button');
+  try {
+    const { direction } = buttonElem.dataset;
+    if (direction === 'today') {
+      setItem('displayedWeekStart', getStartOfWeek(new Date()));
+    } else if (direction === 'next') {
+      getItem('displayedWeekStart').setDate(getItem('displayedWeekStart').getDate() + 7);
+    } else if (direction === 'prev') {
+      getItem('displayedWeekStart').setDate(getItem('displayedWeekStart').getDate() - 7);
+    }
+  } catch (err) {
     return;
   }
-  if (event.target.classList.contains('icon-button-right')) {
-    getItem('displayedWeekStart').setDate(getItem('displayedWeekStart').getDate() + 7);
-    renderWeek();
-    renderHeader();
-    renderCurrentMonth();
-  }
-  if (event.target.classList.contains('icon-button-left')) {
-    getItem('displayedWeekStart').setDate(getItem('displayedWeekStart').getDate() - 7);
-    renderWeek();
-    renderHeader();
-    renderCurrentMonth();
-  }
+
+  renderWeek();
+  renderHeader();
+  renderCurrentMonth();
 
   // при переключении недели обновите displayedWeekStart в storage
   // и перерисуйте все необходимые элементы страницы (renderHeader, renderWeek, renderCurrentMonth)
