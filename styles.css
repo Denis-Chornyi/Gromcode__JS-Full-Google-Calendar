@@ -135,11 +135,11 @@
   width: 14.3%;
 }
 .day-label__day-number {
-  padding-top: 5px;
+  padding-top: 2px;
   height: 40px;
   width: 40px;
   margin-top: 8px;
-  font-size: 26px;
+  font-size: 32px;
   display: inline-block;
 }
 .day-label__day-name {

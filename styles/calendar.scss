@@ -42,11 +42,11 @@
 .day-label {
   width: 14.3%;
   &__day-number {
-    padding-top: $unit * 3 - 1;
+    padding-top: $unit;
     height: $unit * 20;
     width: $unit * 20;
     margin-top: $unit * 4;
-    font-size: $unit * 13;
+    font-size: $unit * 16;
     display: inline-block;
   }
 
