@@ -27,13 +27,13 @@ const onChangeWeek = event => {
   if (!isList) {
     return;
   }
-  if (event.target.classList.contains('right')) {
+  if (event.target.classList.contains('icon-button-right')) {
     getItem('displayedWeekStart').setDate(getItem('displayedWeekStart').getDate() + 7);
     renderWeek();
     renderHeader();
     renderCurrentMonth();
   }
-  if (event.target.classList.contains('left')) {
+  if (event.target.classList.contains('icon-button-left')) {
     getItem('displayedWeekStart').setDate(getItem('displayedWeekStart').getDate() - 7);
     renderWeek();
     renderHeader();

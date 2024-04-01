@@ -67,7 +67,7 @@ export const renderEvents = () => {
       const slotElem = document.querySelector(
         `.calendar__day[data-day="${start.getDate()}"] .calendar__time-slot[data-time="${start.getHours()}"]`
       );
-      slotElem.append(eventElem, lineTime);
+      slotElem.append(eventElem);
     });
 
   // достаем из storage все события и дату понедельника отображаемой недели
