@@ -106,7 +106,7 @@
 }
 .calendar__time-scale {
   position: absolute;
-  top: 18.3%;
+  top: 20.1%;
   left: 1%;
 }
 .calendar__day-label {
@@ -115,9 +115,9 @@
 }
 .calendar__week {
   display: flex;
-  width: 97%;
+  width: 95.5%;
   position: absolute;
-  top: 17%;
+  top: 19%;
   left: 4.5%;
 }
 .calendar__day {
@@ -126,7 +126,6 @@
 .calendar__time-slot {
   position: relative;
   height: 60px;
-  width: 100%;
   border: solid #565656;
   border-width: 0 1px 1px 0;
 }
