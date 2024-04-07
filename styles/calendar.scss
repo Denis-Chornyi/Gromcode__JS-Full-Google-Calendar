@@ -1,10 +1,18 @@
 // стили сетки календаря и заголовка календаря с днями недели
+.fixed-header {
+  position: fixed;
+  background-color: $color-text-white;
+  width: 100%;
+  z-index: 77;
+}
+
 .calendar {
   padding: $unit * 10 0;
   &__header {
     position: fixed;
     width: 100%;
     display: flex;
+    background-color: $color-text-white;
     padding-left: 4.5%;
     z-index: 3;
   }
@@ -38,6 +46,30 @@
     border-width: 0 1px 1px 0;
   }
 }
+
+.current-time {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  margin: 0;
+  margin-top: -3px;
+}
+.current-time__circle {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 50px;
+  background-color: red;
+}
+.current-time__rectangle {
+  height: 2px;
+  width: calc((100vw - 76px) / 7 - 5px);
+  border: none;
+  background-color: red;
+}
+
 .day-label {
   width: 14.3%;
   &__day-number {

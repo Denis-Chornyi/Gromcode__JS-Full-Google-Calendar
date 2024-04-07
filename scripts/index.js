@@ -5,6 +5,7 @@ import { initNavigation } from './header/navigation.js';
 import { setItem } from './common/storage.js';
 import { getStartOfWeek } from './common/time.utils.js';
 import { initEventForm } from './events/createEvent.js';
+import { highlightDate } from './calendar/timeline.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // инициализация всех элементов
@@ -14,4 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderHeader();
   initNavigation();
   initEventForm();
+  highlightDate()
 });
