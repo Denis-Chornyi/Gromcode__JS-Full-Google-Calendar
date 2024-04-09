@@ -65,7 +65,6 @@ export const renderEvents = () => {
     })
     .forEach(event => {
       const { start } = event;
-      console.log(event);
       const eventElem = createEventElement(event);
       const slotElem = document.querySelector(
         `.calendar__day[data-day="${start.getDate()}"] .calendar__time-slot[data-time="${start.getHours()}"]`
