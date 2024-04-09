@@ -138,28 +138,29 @@
 }
 
 .current-time {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   position: absolute;
+  left: -5px;
   z-index: 10;
   margin: 0;
   margin-top: -3px;
 }
 
 .current-time__circle {
-  width: 10px;
+  width: 11px;
   height: 10px;
-  border: none;
-  border-radius: 50px;
-  background-color: red;
+  border-radius: 100%;
+  background-color: #ff0000;
 }
 
-.current-time__rectangle {
+.current-time__line {
   height: 2px;
-  width: calc((100vw - 76px) / 7 - 5px);
+  width: 100%;
   border: none;
-  background-color: red;
+  background-color: #ff0000;
 }
 
 .day-label {

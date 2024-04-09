@@ -1,16 +1,32 @@
-export const highlightDate = () => {
-  const getCurTimeEl = document.querySelector('.current-time');
-  const getTimeSlotsArr = [...document.querySelectorAll('.calendar__time-slot')];
-  // const getDaysArr = [...document.querySelectorAll('.calendar__day')];
-  console.log(getCurTimeEl);
-  return getTimeSlotsArr.map(slot => {
-    getCurTimeEl.dataset.time = new Date().getHours();
-    getCurTimeEl.dataset.day = new Date().getDay();
+export const timeLine = () => {
+  const isTimeLine = document.querySelector('.current-time');
+  if (isTimeLine) {
+    isTimeLine.remove();
+  }
 
-    if (getCurTimeEl.dataset.time === slot.dataset.time) {
-      getCurTimeEl.style.left = '-5px';
-      getCurTimeEl.style.top = `${new Date().getMinutes()}px`;
-      slot.append(getCurTimeEl);
+  const currentTimeEl = document.createElement('div');
+  currentTimeEl.className = 'current-time';
+
+  const circleElem = document.createElement('div');
+  circleElem.className = 'current-time__circle';
+  currentTimeEl.append(circleElem);
+
+  const lineElem = document.createElement('div');
+  lineElem.className = 'current-time__line';
+  currentTimeEl.append(lineElem);
+
+  const getTimeSlots = document.querySelectorAll('.calendar__time-slot');
+
+  currentTimeEl.dataset.time = new Date().getHours();
+  currentTimeEl.dataset.day = new Date().getDate();
+  currentTimeEl.style.top = `${new Date().getMinutes() - 2.5}px`;
+
+  return getTimeSlots.forEach(slot => {
+    const slotDay = slot.parentElement.dataset.day;
+    if (slot.dataset.time === currentTimeEl.dataset.time && slotDay === currentTimeEl.dataset.day) {
+      slot.append(currentTimeEl);
     }
   });
 };
+
+setInterval(timeLine, 1000 * 60);

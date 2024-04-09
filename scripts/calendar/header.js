@@ -2,6 +2,7 @@ import { getItem } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 import { openModal } from '../common/modal.js';
 
+
 const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const calendarHeader = document.querySelector('.calendar__header');
 export const renderHeader = () => {
@@ -21,6 +22,7 @@ export const renderHeader = () => {
     .join('');
 
   calendarHeader.innerHTML = headerWeek;
+
   return headerWeek;
   // на основе displayedWeekStart из storage с помощью generateWeekRange сформируйте массив дней текущей недели
   // на основе полученного массива сформируйте разметку в виде строки - 7 дней (день недели и число в месяце)

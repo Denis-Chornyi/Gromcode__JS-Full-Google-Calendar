@@ -1,4 +1,4 @@
-import { getItem, setItem } from '../common/storage.js';
+import { createEvent, getEvents, getItem, setItem } from '../common/storage.js';
 import { renderEvents } from './events.js';
 import { getDateTime } from '../common/time.utils.js';
 import { closeModal } from '../common/modal.js';
@@ -29,17 +29,20 @@ function onCreateEvent(event) {
   }, {});
   const { date, startTime, endTime, title, description } = formDate;
 
-  const events = getItem('events') || [];
-  const newEvents = events.concat({
-    id: Math.random(),
+  const newEvents = {
     title,
     description,
     start: getDateTime(date, startTime),
     end: getDateTime(date, endTime)
-  });
-  setItem('events', newEvents);
-  onCloseEventForm();
-  renderEvents();
+  };
+
+  createEvent(newEvents)
+    .then(() => getEvents())
+    .then(newEventsList => {
+      setItem('events', newEventsList);
+      onCloseEventForm();
+      renderEvents();
+    });
   // задача этой ф-ции только добавить новое событие в массив событий, что хранится в storage
   // создавать или менять DOM элементы здесь не нужно. Этим займутся другие ф-ции
   // при подтверждении формы нужно считать данные с формы

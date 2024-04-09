@@ -1,4 +1,4 @@
-import { getItem, setItem } from '../common/storage.js';
+import { getEvents, getItem, setItem } from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 
@@ -54,22 +54,25 @@ const createEventElement = event => {
 
 export const renderEvents = () => {
   removeEventsFromCalendar();
-  const events = getItem('events') || [];
+
   const startDateTime = getItem('displayedWeekStart');
   const endDateTime = shmoment(startDateTime).add('days', 7).result();
+  const events = getItem('events') || [];
+
   events
     .filter(event => {
       return event.start >= startDateTime && event.end < endDateTime;
     })
     .forEach(event => {
       const { start } = event;
+      console.log(event);
       const eventElem = createEventElement(event);
       const slotElem = document.querySelector(
         `.calendar__day[data-day="${start.getDate()}"] .calendar__time-slot[data-time="${start.getHours()}"]`
       );
       slotElem.append(eventElem);
     });
-
+console.log(getItem('events'))
   // достаем из storage все события и дату понедельника отображаемой недели
   // фильтруем события, оставляем только те, что входят в текущую неделю
   // создаем для них DOM элементы с помощью createEventElement
@@ -78,10 +81,8 @@ export const renderEvents = () => {
   // каждый день и временная ячейка должно содержать дата атрибуты, по которым можно будет найти нужную временную ячейку для события
   // не забудьте удалить с календаря старые события перед добавлением новых
 };
-
 function onDeleteEvent() {
   const events = getItem('events');
-
   const eventIdToDelete = +getItem('eventIdToDelete');
 
   const newEventsArr = events.filter(event => event.id !== eventIdToDelete);
