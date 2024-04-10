@@ -8,18 +8,15 @@ import { initEventForm } from './events/createEvent.js';
 import { timeLine } from './calendar/timeline.js';
 import { renderEvents } from './events/events.js';
 
-
 document.addEventListener('DOMContentLoaded', () => {
   // инициализация всех элементов
-  getEvents().then((eventsList) => {
-    setItem('events', eventsList)
-    renderEvents()
-  })
+
   renderTimescale();
   setItem('displayedWeekStart', getStartOfWeek(new Date()));
   renderWeek();
   renderHeader();
   initNavigation();
   initEventForm();
-  timeLine()
+  timeLine();
+  renderEvents();
 });

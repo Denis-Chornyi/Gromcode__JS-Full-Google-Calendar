@@ -65,19 +65,18 @@
   background-color: $color-red;
 }
 .current-time__line {
-  height: 2px;
+  height: $unit;
   width: 100%;
-  border: none;
   background-color: $color-red;
 }
 
 .day-label {
   width: 14.3%;
   &__day-number {
-    padding-top: $unit;
-    height: $unit * 20;
-    width: $unit * 20;
-    margin-top: $unit * 4;
+    padding-top: $unit * 4;
+    height: $unit * 25;
+    width: $unit * 25;
+    margin-top: $unit * 2;
     font-size: $unit * 16;
     display: inline-block;
   }

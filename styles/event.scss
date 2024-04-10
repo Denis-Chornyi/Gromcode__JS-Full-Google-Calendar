@@ -16,6 +16,13 @@
   }
 }
 .delete-event-btn {
+  display: flex;
+  align-items: baseline;
   background-color: transparent;
   border: 0;
+
+  &-description {
+    margin: 0;
+    margin-left: $unit * 7;
+  }
 }

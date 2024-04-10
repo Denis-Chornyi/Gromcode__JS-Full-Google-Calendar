@@ -31,7 +31,7 @@
 }
 .modal__content {
   background: #fff;
-  padding: 16px;
+  padding: 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
@@ -159,7 +159,6 @@
 .current-time__line {
   height: 2px;
   width: 100%;
-  border: none;
   background-color: #ff0000;
 }
 
@@ -167,10 +166,10 @@
   width: 14.3%;
 }
 .day-label__day-number {
-  padding-top: 2px;
-  height: 40px;
-  width: 40px;
-  margin-top: 8px;
+  padding-top: 8px;
+  height: 50px;
+  width: 50px;
+  margin-top: 4px;
   font-size: 32px;
   display: inline-block;
 }
@@ -179,13 +178,13 @@
 }
 
 .today-name {
-  color: #4169e1;
+  color: #208ce4;
   background-color: transparent;
 }
 
 .today-number {
   border-radius: 100%;
-  background-color: #4169e1;
+  background-color: #208ce4;
   color: #fff;
 }
 
@@ -229,7 +228,7 @@ input::-webkit-calendar-picker-indicator {
 }
 .event-form__field-title {
   width: 88%;
-  border: solid #4169e1;
+  border: solid #208ce4;
   border-width: 0 0 2px 0;
   margin-bottom: 70px;
 }
@@ -254,7 +253,7 @@ input::-webkit-calendar-picker-indicator {
   width: 90%;
 }
 .event-form__submit-btn {
-  background-color: #4169e1;
+  background-color: #208ce4;
   border: 0;
   padding: 6px 22px;
   color: #fff;
@@ -264,7 +263,7 @@ input::-webkit-calendar-picker-indicator {
 .event {
   width: 95%;
   position: absolute;
-  background-color: #4169e1;
+  background-color: #208ce4;
   border-radius: 8px;
   color: #fff;
   overflow: hidden;
@@ -279,8 +278,14 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .delete-event-btn {
+  display: flex;
+  align-items: baseline;
   background-color: transparent;
   border: 0;
+}
+.delete-event-btn-description {
+  margin: 0;
+  margin-left: 14px;
 }
 
 * {
