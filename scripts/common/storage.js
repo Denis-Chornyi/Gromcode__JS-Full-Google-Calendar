@@ -29,7 +29,8 @@ const mapEvent = events => events.map(({ id, ...rest }) => ({ ...rest, id: id })
 export const getEvents = () =>
   fetch(baseUrl)
     .then(response => response.json())
-    .then(events => mapEvent(events));
+    .then(events => mapEvent(events))
+    .catch(err => alert('Internal Server Error'));
 
 export const createEvent = eventData =>
   fetch(baseUrl, {
