@@ -113,7 +113,7 @@
 }
 .calendar__time-scale {
   position: absolute;
-  top: 20.1%;
+  top: 21.1%;
   left: 1%;
 }
 .calendar__day-label {
@@ -124,7 +124,7 @@
   display: flex;
   width: 95.5%;
   position: absolute;
-  top: 19%;
+  top: 20%;
   left: 4.5%;
 }
 .calendar__day {
@@ -135,6 +135,9 @@
   height: 60px;
   border: solid #565656;
   border-width: 0 1px 1px 0;
+}
+.calendar__time-slot:hover {
+  background-color: rgba(39, 227, 230, 0.2);
 }
 
 .current-time {
@@ -169,7 +172,7 @@
   padding-top: 8px;
   height: 50px;
   width: 50px;
-  margin-top: 4px;
+  margin: 4px 0;
   font-size: 32px;
   display: inline-block;
 }

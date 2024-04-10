@@ -2,6 +2,7 @@ import { getItem } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 import { renderEvents } from '../events/events.js';
 import { createNumbersArray } from '../common/createNumbersArray.js';
+import { openModal } from '../common/modal.js';
 
 const generateDay = () => {
   const hoursOfDay = createNumbersArray(0, 23)
@@ -32,3 +33,13 @@ export const renderWeek = () => {
   // каждый день должен содержать в дата атрибуте порядковый номер дня в месяце
   // после того, как отрисовали всю сетку для отображаемой недели, нужно отобразить события этой недели с помощью renderEvents
 };
+
+// export const timeSlot = event => {
+//   const isTimeSlot = event.target.closest('.calendar__time-slot');
+//   console.log(isTimeSlot);
+//   if (!isTimeSlot) {
+//     return;
+//   }
+//   openModal();
+// };
+// document.querySelector('.calendar__week').addEventListener('click', timeSlot);

@@ -19,7 +19,7 @@
 
   &__time-scale {
     position: absolute;
-    top: 20.1%;
+    top: 21.1%;
     left: 1%;
   }
 
@@ -32,7 +32,7 @@
     display: flex;
     width: 95.5%;
     position: absolute;
-    top: 19%;
+    top: 20%;
     left: 4.5%;
   }
   &__day {
@@ -44,6 +44,10 @@
 
     border: solid $color-text-dark-grey;
     border-width: 0 1px 1px 0;
+
+    &:hover {
+      background-color: rgba(39, 227, 230, 0.2);
+    }
   }
 }
 
@@ -76,7 +80,7 @@
     padding-top: $unit * 4;
     height: $unit * 25;
     width: $unit * 25;
-    margin-top: $unit * 2;
+    margin: $unit * 2 0;
     font-size: $unit * 16;
     display: inline-block;
   }
