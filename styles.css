@@ -134,7 +134,7 @@
   position: relative;
   height: 60px;
   border: solid #565656;
-  border-width: 0 1px 1px 0;
+  border-width: 0 0.5px 0.5px 0;
 }
 .calendar__time-slot:hover {
   background-color: rgba(39, 227, 230, 0.2);
