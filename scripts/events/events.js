@@ -27,10 +27,13 @@ function removeEventsFromCalendar() {
 const createEventElement = event => {
   const { start, end, title, id } = event;
 
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+
   const eventElem = document.createElement('div');
   eventElem.dataset.eventId = id;
-  eventElem.style.top = new Date(start).getMinutes() + 'px';
-  let eventHeight = new Date(end) - new Date(start);
+  eventElem.style.top = startDate.getMinutes() + 'px';
+  let eventHeight = endDate - startDate;
   eventHeight /= 60000;
 
   eventElem.style.height = eventHeight.toFixed() + 'px';
@@ -41,9 +44,7 @@ const createEventElement = event => {
   eventTitleElem.classList.add('event__title');
 
   const eventTimeElem = document.createElement('div');
-  eventTimeElem.textContent = `${new Date(start).getHours()}:${new Date(
-    start
-  ).getMinutes()} - ${new Date(end).getHours()}:${new Date(end).getMinutes()}`;
+  eventTimeElem.textContent = `${startDate.getHours()}:${startDate.getMinutes()} - ${endDate.getHours()}:${endDate.getMinutes()}`;
   eventTimeElem.classList.add('event__time');
   eventElem.append(eventTitleElem, eventTimeElem);
 
