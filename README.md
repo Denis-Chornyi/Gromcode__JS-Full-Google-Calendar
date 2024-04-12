@@ -7,7 +7,7 @@
 3. run `npm install` to to use eslint in the project
 
 
-###[Site link] https://denis-chornyi.github.io/Project-Google-calendar/ - GitHub Page
+### [Site link] https://denis-chornyi.github.io/Project-Google-calendar/ - GitHub Page
 
 ### The tech stack is:
 - [ HTML5 ] - (https://developer.mozilla.org/en-US/docs/Web/HTML)
