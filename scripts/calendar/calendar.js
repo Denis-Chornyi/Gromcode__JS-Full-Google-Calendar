@@ -33,7 +33,18 @@ export const renderWeek = () => {
   // каждый день должен содержать в дата атрибуте порядковый номер дня в месяце
   // после того, как отрисовали всю сетку для отображаемой недели, нужно отобразить события этой недели с помощью renderEvents
 };
+export const renderHeaderWeek = e => {
+  const slotOfHeader = createNumbersArray(1, 8)
+    .map(num => `<div class="calendar__week-decoration-slot" data-number="${num}"></div>`)
+    .join('');
+  document.querySelector('.calendar__week-decoration').innerHTML = slotOfHeader;
 
+  const slotHeader = document.querySelector('.calendar__week-decoration-slot');
+  if (slotHeader.dataset.number === '1') {
+    slotHeader.textContent = 'GMT+02';
+  }
+  console.log(slotHeader);
+};
 // export const timeSlot = event => {
 //   const isTimeSlot = event.target.closest('.calendar__time-slot');
 //   console.log(isTimeSlot);

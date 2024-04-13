@@ -1,17 +1,9 @@
 .time-slot {
   display: flex;
   align-items: end;
-  height: 60px;
-
+  height: $unit * 30;
+  
   &__time {
-    font-size: 15px;
+    font-size: $unit * 7;
   }
-}
-
-.line-time {
-  color: #ff0000;
-  width: 98%;
-  height: 1px;
-  display: inline-block;
-  position: absolute;
 }
