@@ -129,7 +129,7 @@
   border-right: none;
   display: flex;
   align-items: end;
-  width: 13.74%;
+  width: 100%;
 }
 .calendar__week-decoration-slot:first-child {
   width: 51px;
