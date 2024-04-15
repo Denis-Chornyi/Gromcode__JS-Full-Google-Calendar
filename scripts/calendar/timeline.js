@@ -1,3 +1,7 @@
+import { getDisplayedMonth } from '../common/time.utils.js';
+
+const displayedMonthElem = document.querySelector('.navigation__displayed-month');
+
 export const timeLine = () => {
   const isTimeLine = document.querySelector('.current-time');
   if (isTimeLine) {
@@ -19,11 +23,17 @@ export const timeLine = () => {
 
   currentTimeEl.dataset.time = new Date().getHours();
   currentTimeEl.dataset.day = new Date().getDate();
+  currentTimeEl.dataset.month = getDisplayedMonth(new Date());
+
   currentTimeEl.style.top = `${new Date().getMinutes() - 2.5}px`;
 
   return getTimeSlots.forEach(slot => {
     const slotDay = slot.parentElement.dataset.day;
-    if (slot.dataset.time === currentTimeEl.dataset.time && slotDay === currentTimeEl.dataset.day) {
+    if (
+      slot.dataset.time === currentTimeEl.dataset.time &&
+      slotDay === currentTimeEl.dataset.day &&
+      displayedMonthElem.innerHTML === currentTimeEl.dataset.month
+    ) {
       slot.append(currentTimeEl);
     }
   });

@@ -25,7 +25,7 @@ function removeEventsFromCalendar() {
 }
 
 const createEventElement = event => {
-  const { start, end, title, id } = event;
+  const { start, end, title, id, description } = event;
 
   const startDate = new Date(start);
   const endDate = new Date(end);
@@ -44,9 +44,21 @@ const createEventElement = event => {
   eventTitleElem.classList.add('event__title');
 
   const eventTimeElem = document.createElement('div');
-  eventTimeElem.textContent = `${startDate.getHours()}:${startDate.getMinutes()} - ${endDate.getHours()}:${endDate.getMinutes()}`;
+
+  eventTimeElem.textContent = `${startDate.getHours().toString().padStart(2, '0')}:${startDate
+    .getMinutes()
+    .toString()
+    .padStart(2, '0')} - ${endDate.getHours().toString().padStart(2, '0')}:${endDate
+    .getMinutes()
+    .toString()
+    .padStart(2, '0')}`;
   eventTimeElem.classList.add('event__time');
-  eventElem.append(eventTitleElem, eventTimeElem);
+
+  const eventDescriptionElem = document.createElement('div');
+  eventDescriptionElem.textContent = description;
+  eventDescriptionElem.classList.add('event__description');
+
+  eventElem.append(eventTitleElem, eventTimeElem, eventDescriptionElem);
 
   return eventElem;
   // ф-ция создает DOM элемент события

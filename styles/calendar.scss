@@ -7,26 +7,27 @@
 }
 
 .calendar {
-  padding: $unit * 10 0;
+  position: fixed;
+  width: 100%;
+  padding-top: $unit * 10;
+  z-index: 3;
+  background-color: $color-text-white;
 
   &__header {
-    position: fixed;
-    width: 100%;
     display: flex;
-    background-color: $color-text-white;
+
     padding-left: $unit * 25 + 1;
-    z-index: 3;
   }
 
   &__week-decoration {
     display: flex;
     position: fixed;
-    top: 19.37%;
+    top: $unit * 80;
     width: 100%;
     height: $unit * 12 + 1;
     z-index: 11;
     background-color: $color-text-white;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
 
     &-slot {
       font-size: $unit * 6;
@@ -49,7 +50,7 @@
   &__week-container {
     display: flex;
     position: absolute;
-    top: 22.3%;
+    top: $unit * 92;
     width: 100%;
   }
 
@@ -69,7 +70,7 @@
     width: 100%;
   }
   &__day {
-    width: 14.3%;
+    width: 100%;
   }
   &__time-slot {
     position: relative;
