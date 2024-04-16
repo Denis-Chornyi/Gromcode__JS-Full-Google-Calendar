@@ -29,7 +29,8 @@ const createEventElement = event => {
 
   const startDate = new Date(start);
   const endDate = new Date(end);
-
+  moment(startDate).format('HH:mm');
+  moment(endDate).format('HH:mm');
   const eventElem = document.createElement('div');
   eventElem.dataset.eventId = id;
   eventElem.style.top = startDate.getMinutes() + 'px';
@@ -45,13 +46,9 @@ const createEventElement = event => {
 
   const eventTimeElem = document.createElement('div');
 
-  eventTimeElem.textContent = `${startDate.getHours().toString().padStart(2, '0')}:${startDate
-    .getMinutes()
-    .toString()
-    .padStart(2, '0')} - ${endDate.getHours().toString().padStart(2, '0')}:${endDate
-    .getMinutes()
-    .toString()
-    .padStart(2, '0')}`;
+  eventTimeElem.textContent = `${moment(startDate).format('HH:mm')} - ${moment(endDate).format(
+    'HH:mm'
+  )}`;
   eventTimeElem.classList.add('event__time');
 
   const eventDescriptionElem = document.createElement('div');
