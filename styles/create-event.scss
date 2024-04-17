@@ -5,6 +5,7 @@
     transform: rotate(45deg);
     background-color: transparent;
     border: 0;
+    cursor: pointer;
   }
   &-btn__icon {
     margin-right: $unit * 4;
@@ -52,5 +53,6 @@ input::-webkit-calendar-picker-indicator {
     padding: $unit * 3 $unit * 11;
     color: $color-text-white;
     border-radius: $unit * 2;
+    cursor: pointer;
   }
 }

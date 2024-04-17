@@ -40,3 +40,4 @@ export const timeLine = () => {
 };
 
 setInterval(timeLine, 1000 * 60);
+
