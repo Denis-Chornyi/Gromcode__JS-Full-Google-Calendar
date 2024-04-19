@@ -41,7 +41,7 @@ export const createEvent = eventData =>
     body: JSON.stringify(eventData)
   });
 
-export const updateEvent = (eventId, updatedEventData) =>
+export const updatedEvent = (eventId, updatedEventData) =>
   fetch(`${baseUrl}/${eventId}`, {
     method: 'PUT',
     headers: {

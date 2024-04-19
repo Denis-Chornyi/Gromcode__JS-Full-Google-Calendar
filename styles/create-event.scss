@@ -1,34 +1,42 @@
 // стили формы события внутри модального окна
 .create-event {
   text-align: right;
+
   &__close-btn {
     transform: rotate(45deg);
     background-color: transparent;
     border: 0;
     cursor: pointer;
   }
+
   &-btn__icon {
     margin-right: $unit * 4;
   }
 }
+
 input::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
+
 .event-form {
+  
   &__field {
     text-align: left;
     border: 0;
     margin-bottom: $unit * 40;
   }
+
   &__field-title {
     width: 88%;
     border: solid $color-light-blue;
     border-width: 0 0 $unit 0;
     margin-bottom: $unit * 35;
   }
+
   &__time-icon {
     margin-right: $unit * 10;
   }
+
   &__burger {
     position: absolute;
     margin-top: $unit * 3;
@@ -39,14 +47,17 @@ input::-webkit-calendar-picker-indicator {
       height: $unit;
       background-color: $color-black;
       margin-bottom: $unit * 2;
+
       &-bottom {
         width: $unit * 6;
       }
     }
   }
+
   &__textarea {
     width: 90%;
   }
+
   &__submit-btn {
     background-color: $color-light-blue;
     border: 0;

@@ -1,9 +1,12 @@
-import { deleteEvent, getEvents, getItem, setItem } from '../common/storage.js';
+import { deleteEvent, getEvents, getItem, setItem, updatedEvent } from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
+import { closeModal, createEventCloseBtn, openModal } from '../common/modal.js';
+import { getDateTime } from '../common/time.utils.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
+const updateEventBtn = document.querySelector('.updated__event-btn');
 
 function handleEventClick(event) {
   event.preventDefault();
@@ -111,6 +114,45 @@ function onDeleteEvent() {
   // перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
 }
 
+const eventFormElem = document.querySelector('.event-form');
+
+function onUpdateEvent() {
+  const eventIdToDelete = +getItem('eventIdToDelete');
+  openModal();
+  closePopup();
+
+  const formDate = Array.from(new FormData(eventFormElem)).reduce((acc, field) => {
+    const [name, value] = field;
+
+    return {
+      ...acc,
+      [name]: value
+    };
+  }, {});
+  const { date, startTime, endTime, title, description } = formDate;
+
+  const updateEvent = {
+    title,
+    description,
+    start: getDateTime(date, startTime),
+    end: getDateTime(date, endTime)
+  };
+  if (createEventCloseBtn) {
+    console.log(eventIdToDelete);
+    return;
+  }
+  console.log(`${eventIdToDelete} - edit`);
+  updatedEvent(eventIdToDelete, updateEvent)
+    .then(() => getEvents())
+    .then(updatedEventArr => {
+      closePopup()
+      setItem('events', updatedEventArr);
+      renderEvents();
+    });
+}
+
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 
 weekElem.addEventListener('click', handleEventClick);
+
+updateEventBtn.addEventListener('click', onUpdateEvent);

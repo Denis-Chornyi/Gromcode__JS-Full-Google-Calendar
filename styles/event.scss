@@ -15,21 +15,27 @@
     padding: $unit * 2 0;
     font-weight: 700;
   }
+
   &__time {
     font-weight: 300;
     margin-bottom: $unit * 4;
   }
 }
-.delete-event-btn {
+
+.popup__btn {
+  width: $unit * 48;
   display: flex;
   align-items: baseline;
   background-color: transparent;
-  border: 0;
+  margin-top: 10px;
   cursor: pointer;
-
 
   &-description {
     margin: 0;
     margin-left: $unit * 7;
   }
+}
+
+.updated__event-btn {
+  margin-top: 0;
 }

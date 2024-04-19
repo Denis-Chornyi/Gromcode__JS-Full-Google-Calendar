@@ -10,7 +10,7 @@
     align-items: center;
     border-radius: 20px;
     padding-right: $unit * 8;
-    box-shadow: 0px 4px 4px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 4px 4px -3px #000000bf;
     cursor: pointer;
 
     &-plus {
@@ -20,19 +20,22 @@
 }
 
 .navigation {
+  
   &__today-btn {
     padding: $unit * 5;
-    box-shadow: 0px 2px 2px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 2px 2px -3px #000000bf;
   }
+
   &__nav-icon {
     margin-left: $unit * 7;
   }
+
   &__displayed-month {
     margin-left: $unit * 14;
     font-size: $unit * 12;
   }
 }
+
 .icon-button-left {
   margin-left: $unit * 17;
 }
-

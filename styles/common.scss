@@ -23,11 +23,11 @@
   align-items: center;
 
   &__content {
-    background: #fff;
+    background: $color-text-white;
     padding: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid $color-grey;
     border-radius: 8px;
-    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 14px 0px #000000bf;
   }
 }
 
@@ -37,19 +37,19 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #cccccc45;
+  background-color: $color-transparent-grey;
   z-index: 10;
 }
 
 .popup {
+  
   &__content {
     position: absolute;
-    background: #fff;
+    background: $color-text-white;
     padding: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid $color-grey;
     border-radius: 8px;
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-    cursor: pointer;
+    box-shadow: 0px 0px 8px 0px #000000bf;
   }
 }
 
