@@ -120,9 +120,9 @@ function onUpdateEvent() {
 
   updatedEvent(eventIdToDelete, updateEvent)
     .then(() => getEvents())
-    .then(updatedEventArr => {
+    .then(updatedEvent => {
       closePopup();
-      setItem('events', updatedEventArr);
+      setItem('events', updatedEvent);
       renderEvents();
     });
 }
