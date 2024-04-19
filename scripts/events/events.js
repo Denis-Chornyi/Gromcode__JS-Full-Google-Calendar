@@ -117,15 +117,11 @@ function onUpdateEvent() {
     start: getDateTime(date, startTime),
     end: getDateTime(date, endTime)
   };
-  if (createEventCloseBtn) {
-    console.log(eventIdToDelete);
-    return;
-  }
-  console.log(`${eventIdToDelete} - edit`);
+
   updatedEvent(eventIdToDelete, updateEvent)
     .then(() => getEvents())
     .then(updatedEventArr => {
-      closePopup()
+      closePopup();
       setItem('events', updatedEventArr);
       renderEvents();
     });
