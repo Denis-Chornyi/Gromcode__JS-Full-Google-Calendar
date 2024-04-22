@@ -2,7 +2,6 @@ import { getItem } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 import { openModal } from '../common/modal.js';
 
-
 const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const calendarHeader = document.querySelector('.calendar__header');
 export const renderHeader = () => {
@@ -26,4 +25,7 @@ export const renderHeader = () => {
   return headerWeek;
 };
 const createEventBtn = document.querySelector('.create-event-btn');
-createEventBtn.addEventListener('click', openModal);
+createEventBtn.addEventListener('click', () => {
+  document.querySelector('.event-form__submit-btn').textContent = 'Create';
+  openModal();
+});

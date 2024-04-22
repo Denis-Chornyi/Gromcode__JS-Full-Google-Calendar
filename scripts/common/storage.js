@@ -49,3 +49,13 @@ export const deleteEvent = eventId =>
   fetch(`${baseUrl}/${eventId}`, {
     method: 'DELETE'
   });
+
+// /////////////////////////////////////////////////////////
+export const getEventById = eventId =>
+  fetch(`${baseUrl}/${eventId}`).then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error();
+    }
+  });

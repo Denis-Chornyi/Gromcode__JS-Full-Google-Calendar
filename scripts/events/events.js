@@ -1,4 +1,11 @@
-import { deleteEvent, getEvents, getItem, setItem, updatedEvent } from '../common/storage.js';
+import {
+  deleteEvent,
+  getEventById,
+  getEvents,
+  getItem,
+  setItem,
+  updatedEvent
+} from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 import { closeModal, createEventCloseBtn, openModal } from '../common/modal.js';
@@ -85,6 +92,7 @@ export const renderEvents = async () => {
 };
 function onDeleteEvent() {
   const eventIdToDelete = +getItem('eventIdToDelete');
+
   deleteEvent(eventIdToDelete)
     .then(() => getEvents())
     .then(newEventsArr => {
@@ -94,41 +102,40 @@ function onDeleteEvent() {
     });
 }
 
-const eventFormElem = document.querySelector('.event-form');
-
 function onUpdateEvent() {
   const eventIdToDelete = +getItem('eventIdToDelete');
-  openModal();
+
   closePopup();
+  openModal();
+  const getInputValues = document.querySelectorAll('.event-form__field');
+  const [titleInput, dateInput, startTimeInput, endTimeInput, descriptionInput] = getInputValues;
 
-  const formDate = Array.from(new FormData(eventFormElem)).reduce((acc, field) => {
-    const [name, value] = field;
+  const getEventFromStorage = getEventById(eventIdToDelete);
+  getEventFromStorage.then(res => {
+    const { date, title, description, start, end } = res;
 
-    return {
-      ...acc,
-      [name]: value
-    };
-  }, {});
-  const { date, startTime, endTime, title, description } = formDate;
+    const startTimeNeeded = `${moment(start).format('HH:mm')}`;
+    const endTimeNeeded = `${moment(end).format('HH:mm')}`;
+    const dateNeeded = `${date}`;
 
-  const updateEvent = {
-    title,
-    description,
-    start: getDateTime(date, startTime),
-    end: getDateTime(date, endTime)
-  };
-
-  updatedEvent(eventIdToDelete, updateEvent)
-    .then(() => getEvents())
-    .then(updatedEvent => {
-      closePopup();
-      setItem('events', updatedEvent);
-      renderEvents();
-    });
+    titleInput.value = title;
+    descriptionInput.value = description;
+    startTimeInput.value = startTimeNeeded;
+    endTimeInput.value = endTimeNeeded;
+    dateInput.value = dateNeeded;
+    // document.querySelector('.event-form__submit-btn').textContent = 'Edit';
+  });
 }
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 
 weekElem.addEventListener('click', handleEventClick);
+const eventFormElem = document.querySelector('.event-form');
 
-updateEventBtn.addEventListener('click', onUpdateEvent);
+updateEventBtn.addEventListener('click', () => {
+  document.querySelector('.event-form__submit-btn').textContent = 'Edit';
+  onUpdateEvent();
+  if (document.querySelector('.event-form__submit-btn').textContent === 'Edit') {
+    eventFormElem.addEventListener('submit', onDeleteEvent);
+  }
+});

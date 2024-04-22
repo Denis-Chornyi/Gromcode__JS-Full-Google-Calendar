@@ -31,7 +31,8 @@ function onCreateEvent(event) {
     title,
     description,
     start: getDateTime(date, startTime),
-    end: getDateTime(date, endTime)
+    end: getDateTime(date, endTime),
+    date: date
   };
 
   createEvent(newEvents)
