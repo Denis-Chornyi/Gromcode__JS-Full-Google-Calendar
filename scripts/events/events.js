@@ -4,16 +4,18 @@ import {
   getEvents,
   getItem,
   setItem,
-  updatedEvent
+  updateEvent
 } from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 import { closeModal, createEventCloseBtn, openModal } from '../common/modal.js';
 import { getDateTime } from '../common/time.utils.js';
+import { onCloseEventForm } from './createEvent.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
-const updateEventBtn = document.querySelector('.updated__event-btn');
+const editEventBtn = document.querySelector('.edit__event-btn');
+const eventFormElem = document.querySelector('.event-form');
 
 function handleEventClick(event) {
   event.preventDefault();
@@ -102,7 +104,7 @@ function onDeleteEvent() {
     });
 }
 
-function onUpdateEvent() {
+function setEventById() {
   const eventIdToDelete = +getItem('eventIdToDelete');
 
   closePopup();
@@ -123,19 +125,46 @@ function onUpdateEvent() {
     startTimeInput.value = startTimeNeeded;
     endTimeInput.value = endTimeNeeded;
     dateInput.value = dateNeeded;
-    // document.querySelector('.event-form__submit-btn').textContent = 'Edit';
+    document.querySelector('.event-form__submit-btn').textContent = 'Edit';
   });
 }
+
+const onUpdateEvent = event => {
+  event.preventDefault();
+  const formDate = Array.from(new FormData(eventFormElem)).reduce((acc, field) => {
+    const [name, value] = field;
+
+    return {
+      ...acc,
+      [name]: value
+    };
+  }, {});
+  const { date, startTime, endTime, title, description } = formDate;
+
+  const editedEvent = {
+    title,
+    description,
+    start: getDateTime(date, startTime),
+    end: getDateTime(date, endTime),
+    date: date
+  };
+
+  const eventIdToDelete = +getItem('eventIdToDelete');
+
+  updateEvent(eventIdToDelete, editedEvent)
+    .then(() => getEvents())
+    .then(newEventsList => {
+      setItem('events', newEventsList);
+      onCloseEventForm();
+      renderEvents();
+    });
+};
+
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 
 weekElem.addEventListener('click', handleEventClick);
-const eventFormElem = document.querySelector('.event-form');
 
-updateEventBtn.addEventListener('click', () => {
-  document.querySelector('.event-form__submit-btn').textContent = 'Edit';
-  onUpdateEvent();
-  if (document.querySelector('.event-form__submit-btn').textContent === 'Edit') {
-    eventFormElem.addEventListener('submit', onDeleteEvent);
-  }
-});
+editEventBtn.addEventListener('click', setEventById);
+
+eventFormElem.addEventListener('submit', onUpdateEvent);

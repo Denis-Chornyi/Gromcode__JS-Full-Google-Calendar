@@ -10,7 +10,7 @@ function clearEventForm() {
   eventFormElem.reset();
 }
 
-function onCloseEventForm() {
+export function onCloseEventForm() {
   closeModal();
   clearEventForm();
 }
