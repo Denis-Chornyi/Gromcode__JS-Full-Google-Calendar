@@ -24,7 +24,8 @@ export const renderHeader = () => {
 
   return headerWeek;
 };
-const createEventBtn = document.querySelector('.create-event-btn');
+
+export const createEventBtn = document.querySelector('.create-event-btn');
 createEventBtn.addEventListener('click', () => {
   document.querySelector('.event-form__submit-btn').textContent = 'Create';
   openModal();

@@ -14,7 +14,7 @@ import { onCloseEventForm } from './createEvent.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
-const editEventBtn = document.querySelector('.edit__event-btn');
+export const editEventBtn = document.querySelector('.edit__event-btn');
 const eventFormElem = document.querySelector('.event-form');
 
 function handleEventClick(event) {
@@ -104,7 +104,7 @@ function onDeleteEvent() {
     });
 }
 
-function setEventById() {
+export function setEventById() {
   const eventIdToDelete = +getItem('eventIdToDelete');
 
   closePopup();
@@ -125,11 +125,10 @@ function setEventById() {
     startTimeInput.value = startTimeNeeded;
     endTimeInput.value = endTimeNeeded;
     dateInput.value = dateNeeded;
-    document.querySelector('.event-form__submit-btn').textContent = 'Edit';
   });
 }
 
-const onUpdateEvent = event => {
+export const onUpdateEvent = event => {
   event.preventDefault();
   const formDate = Array.from(new FormData(eventFormElem)).reduce((acc, field) => {
     const [name, value] = field;
@@ -149,8 +148,6 @@ const onUpdateEvent = event => {
     date: date
   };
 
-  const eventIdToDelete = +getItem('eventIdToDelete');
-
   updateEvent(eventIdToDelete, editedEvent)
     .then(() => getEvents())
     .then(newEventsList => {
@@ -160,11 +157,12 @@ const onUpdateEvent = event => {
     });
 };
 
-
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 
 weekElem.addEventListener('click', handleEventClick);
 
-editEventBtn.addEventListener('click', setEventById);
-
-eventFormElem.addEventListener('submit', onUpdateEvent);
+editEventBtn.addEventListener('click', () => {
+  setEventById();
+  document.querySelector('.event-form__submit-btn').textContent = 'Edit';
+  eventFormElem.addEventListener('submit', onUpdateEvent);
+});

@@ -1,7 +1,8 @@
-import { createEvent, getEvents, setItem } from '../common/storage.js';
+import { createEvent, getEventById, getEvents, getItem, setItem } from '../common/storage.js';
 import { renderEvents } from './events.js';
 import { getDateTime } from '../common/time.utils.js';
-import { closeModal } from '../common/modal.js';
+import { closeModal, openModal } from '../common/modal.js';
+import { createEventBtn } from '../calendar/header.js';
 
 const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');
