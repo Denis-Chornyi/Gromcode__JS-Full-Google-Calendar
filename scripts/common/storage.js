@@ -50,7 +50,6 @@ export const deleteEvent = eventId =>
     method: 'DELETE'
   });
 
-// /////////////////////////////////////////////////////////
 export const getEventById = eventId =>
   fetch(`${baseUrl}/${eventId}`).then(response => {
     if (response.ok) {
