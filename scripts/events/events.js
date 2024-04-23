@@ -1,21 +1,11 @@
-import {
-  deleteEvent,
-  getEventById,
-  getEvents,
-  getItem,
-  setItem,
-  updateEvent
-} from '../common/storage.js';
+import { deleteEvent, getEventById, getEvents, getItem, setItem } from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
-import { closeModal, createEventCloseBtn, openModal } from '../common/modal.js';
-import { getDateTime } from '../common/time.utils.js';
-import { onCloseEventForm } from './createEvent.js';
+import { openModal } from '../common/modal.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
 export const editEventBtn = document.querySelector('.edit__event-btn');
-const eventFormElem = document.querySelector('.event-form');
 
 function handleEventClick(event) {
   event.preventDefault();
