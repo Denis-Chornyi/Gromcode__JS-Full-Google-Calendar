@@ -128,35 +128,6 @@ export function setEventById() {
   });
 }
 
-export const onUpdateEvent = event => {
-  event.preventDefault();
-  const formDate = Array.from(new FormData(eventFormElem)).reduce((acc, field) => {
-    const [name, value] = field;
-
-    return {
-      ...acc,
-      [name]: value
-    };
-  }, {});
-  const { date, startTime, endTime, title, description } = formDate;
-
-  const editedEvent = {
-    title,
-    description,
-    start: getDateTime(date, startTime),
-    end: getDateTime(date, endTime),
-    date: date
-  };
-
-  updateEvent(eventIdToDelete, editedEvent)
-    .then(() => getEvents())
-    .then(newEventsList => {
-      setItem('events', newEventsList);
-      onCloseEventForm();
-      renderEvents();
-    });
-};
-
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 
 weekElem.addEventListener('click', handleEventClick);
@@ -164,5 +135,4 @@ weekElem.addEventListener('click', handleEventClick);
 editEventBtn.addEventListener('click', () => {
   setEventById();
   document.querySelector('.event-form__submit-btn').textContent = 'Edit';
-  eventFormElem.addEventListener('submit', onUpdateEvent);
 });

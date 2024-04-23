@@ -1,4 +1,11 @@
-import { createEvent, getEventById, getEvents, getItem, setItem } from '../common/storage.js';
+import {
+  createEvent,
+  getEventById,
+  getEvents,
+  getItem,
+  setItem,
+  updateEvent
+} from '../common/storage.js';
 import { renderEvents } from './events.js';
 import { getDateTime } from '../common/time.utils.js';
 import { closeModal, openModal } from '../common/modal.js';
@@ -35,14 +42,25 @@ function onCreateEvent(event) {
     end: getDateTime(date, endTime),
     date: date
   };
+  if (document.querySelector('.event-form__submit-btn').textContent === 'Create') {
+    createEvent(newEvents)
+      .then(() => getEvents())
+      .then(newEventsList => {
+        setItem('events', newEventsList);
+        onCloseEventForm();
+        renderEvents();
+      });
+  } else {
+    const eventIdToDelete = +getItem('eventIdToDelete');
 
-  createEvent(newEvents)
-    .then(() => getEvents())
-    .then(newEventsList => {
-      setItem('events', newEventsList);
-      onCloseEventForm();
-      renderEvents();
-    });
+    updateEvent(eventIdToDelete, newEvents)
+      .then(() => getEvents())
+      .then(newEventsList => {
+        setItem('events', newEventsList);
+        onCloseEventForm();
+        renderEvents();
+      });
+  }
 }
 
 export function initEventForm() {
