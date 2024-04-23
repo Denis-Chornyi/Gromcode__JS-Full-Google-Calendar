@@ -28,11 +28,15 @@
   align-items: baseline;
   background-color: transparent;
   margin-top: 10px;
+  border-color: $color-light-blue;
   cursor: pointer;
 
   &-description {
     margin: 0;
     margin-left: $unit * 7;
+  }
+  &:hover {
+    background-color: $color-transparent-ocean;
   }
 }
 

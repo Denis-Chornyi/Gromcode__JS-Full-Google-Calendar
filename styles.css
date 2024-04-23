@@ -1,5 +1,6 @@
 .page {
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -95,23 +96,24 @@
   margin-left: 34px;
 }
 
-.fixed-header {
-  position: fixed;
-  background-color: #fff;
-  width: 100%;
-  z-index: 77;
-}
-
 .calendar {
-  position: fixed;
+  overflow-y: scroll;
   width: 100%;
-  padding-top: 20px;
   z-index: 3;
-  background-color: #fff;
 }
 .calendar__header {
   display: flex;
+  align-items: end;
+  position: fixed;
+  width: 100%;
+  height: 98px;
   padding-left: 51px;
+  background-color: #fff;
+  z-index: 4;
+}
+.calendar__body {
+  position: relative;
+  top: 121px;
 }
 .calendar__week-decoration {
   display: flex;
@@ -119,9 +121,9 @@
   top: 160px;
   width: 100%;
   height: 25px;
-  z-index: 11;
   background-color: #fff;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5019607843);
+  z-index: 3;
 }
 .calendar__week-decoration-slot {
   font-size: 12px;
@@ -139,7 +141,6 @@
 }
 .calendar__week-container {
   display: flex;
-  position: absolute;
   top: 184px;
   width: 100%;
 }
@@ -319,11 +320,15 @@ input::-webkit-calendar-picker-indicator {
   align-items: baseline;
   background-color: transparent;
   margin-top: 10px;
+  border-color: #208ce4;
   cursor: pointer;
 }
 .popup__btn-description {
   margin: 0;
   margin-left: 14px;
+}
+.popup__btn:hover {
+  background-color: rgba(39, 227, 230, 0.2);
 }
 
 .edit__event-btn {
