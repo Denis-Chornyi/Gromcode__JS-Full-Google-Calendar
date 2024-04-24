@@ -1,6 +1,5 @@
 const modalElem = document.querySelector('.modal');
-const modalContentElem = document.querySelector('.modal__content');
-export const createEventCloseBtn = document.querySelector('.create-event__close-btn');
+const createEventCloseBtn = document.querySelector('.create-event__close-btn');
 
 export const openModal = () => {
   modalElem.style.display = 'flex';

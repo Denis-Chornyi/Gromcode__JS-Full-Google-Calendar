@@ -7,9 +7,9 @@ import { timeLine } from '../calendar/timeline.js';
 const navElem = document.querySelector('.navigation');
 const displayedMonthElem = document.querySelector('.navigation__displayed-month');
 
-function renderCurrentMonth() {
+const renderCurrentMonth = () => {
   displayedMonthElem.innerHTML = getDisplayedMonth(getItem('displayedWeekStart'));
-}
+};
 setItem('displayedWeekStart', getStartOfWeek(new Date()));
 const onChangeWeek = event => {
   const buttonElem = event.target.closest('button');

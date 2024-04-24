@@ -1,14 +1,12 @@
 import { getItem } from '../common/storage.js';
-import { generateWeekRange } from '../common/time.utils.js';
+import { daysOfWeek, generateWeekRange } from '../common/time.utils.js';
 import { openModal } from '../common/modal.js';
 
-const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const calendarHeader = document.querySelector('.calendar__header');
 export const renderHeader = () => {
-  const today = new Date();
   const headerWeek = generateWeekRange(getItem('displayedWeekStart'))
     .map(dayOfWeekNumber => {
-      const isToday = dayOfWeekNumber.toDateString() === today.toDateString();
+      const isToday = dayOfWeekNumber.toDateString() === new Date().toDateString();
       const todayClassNumber = isToday ? 'today-number' : '';
       const todayClassName = isToday ? 'today-name' : '';
       return `<div class="calendar__day-label day-label">

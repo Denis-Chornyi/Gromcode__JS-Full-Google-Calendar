@@ -2,7 +2,6 @@ import { getItem } from '../common/storage.js';
 import { generateWeekRange } from '../common/time.utils.js';
 import { renderEvents } from '../events/events.js';
 import { createNumbersArray } from '../common/createNumbersArray.js';
-import { openModal } from '../common/modal.js';
 
 const generateDay = () => {
   const hoursOfDay = createNumbersArray(0, 23)

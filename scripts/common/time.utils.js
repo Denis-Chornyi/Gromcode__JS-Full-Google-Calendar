@@ -39,6 +39,8 @@ const monthsNames = [
   'Dec'
 ];
 
+export const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
 export const getDisplayedMonth = date => {
   const weekStart = getStartOfWeek(date);
   const weekEnd = shmoment(date).add('days', 6).result();
@@ -46,12 +48,12 @@ export const getDisplayedMonth = date => {
   const startYear = weekStart.getFullYear();
   const endMonth = weekEnd.getMonth();
   const endYear = weekEnd.getFullYear();
-  const isSameMonth = startMonth === endMonth;
-  if (isSameMonth) {
+
+  if (startMonth === endMonth) {
     return `${monthsNames[startMonth]} ${startYear}`;
   }
-  const isSameYear = startYear === endYear;
-  return isSameYear
+  
+  return startYear === endYear
     ? `${monthsNames[startMonth]} - ${monthsNames[endMonth]} ${startYear}`
     : `${monthsNames[startMonth]} ${startYear} - ${monthsNames[endMonth]} ${endYear}`;
 };
