@@ -52,7 +52,7 @@ export const getDisplayedMonth = date => {
   if (startMonth === endMonth) {
     return `${monthsNames[startMonth]} ${startYear}`;
   }
-  
+
   return startYear === endYear
     ? `${monthsNames[startMonth]} - ${monthsNames[endMonth]} ${startYear}`
     : `${monthsNames[startMonth]} ${startYear} - ${monthsNames[endMonth]} ${endYear}`;

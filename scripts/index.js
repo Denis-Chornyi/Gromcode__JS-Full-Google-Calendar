@@ -7,6 +7,7 @@ import { getStartOfWeek } from './common/time.utils.js';
 import { initEventForm } from './events/createEvent.js';
 import { timeLine } from './calendar/timeline.js';
 import { renderEvents } from './events/events.js';
+import { setColorForEvent } from './events/eventsColor.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderDecoration();
@@ -18,4 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initEventForm();
   timeLine();
   renderEvents();
+  setColorForEvent();
 });

@@ -7,7 +7,7 @@ const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
 export const editEventBtn = document.querySelector('.edit__event-btn');
 
-function handleEventClick(event) {
+const handleEventClick = event => {
   event.preventDefault();
   let isEvent = event.target.closest('.event');
   if (!isEvent) {
@@ -15,13 +15,13 @@ function handleEventClick(event) {
   }
   openPopup(event.clientX, event.clientY);
   setItem('eventIdToDelete', isEvent.dataset.eventId);
-}
-function removeEventsFromCalendar() {
+};
+const removeEventsFromCalendar = () => {
   const eventsElems = document.querySelectorAll('.event');
   if (eventsElems) {
     eventsElems.forEach(eventElem => eventElem.remove());
   }
-}
+};
 
 export const createEventElement = event => {
   const { start, end, title, id, description } = event;
@@ -76,7 +76,7 @@ export const renderEvents = async () => {
       slotElem.append(eventElem);
     });
 };
-function onDeleteEvent() {
+const onDeleteEvent = () => {
   const eventIdToDelete = +getItem('eventIdToDelete');
 
   deleteEvent(eventIdToDelete)
@@ -86,9 +86,9 @@ function onDeleteEvent() {
       closePopup();
       renderEvents();
     });
-}
+};
 
-export function setEventById() {
+export const setEventById = () => {
   const eventIdToDelete = +getItem('eventIdToDelete');
 
   closePopup();
@@ -110,7 +110,7 @@ export function setEventById() {
     endTimeInput.value = endTimeNeeded;
     dateInput.value = dateNeeded;
   });
-}
+};
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);
 
