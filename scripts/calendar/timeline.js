@@ -3,11 +3,20 @@ import { getDisplayedMonth, getStartOfWeek } from '../common/utils.js';
 const displayedMonthElem = document.querySelector('.navigation__displayed-month');
 
 export const timeLine = () => {
-  const isTimeLine = document.querySelector('.current-time');
-  if (isTimeLine) {
-    isTimeLine.remove();
+  const existingTimeLine = document.querySelector('.current-time');
+  if (existingTimeLine) {
+    existingTimeLine.remove();
   }
 
+  const currentTimeEl = createCurrentTimeElement();
+  const currentTimeSlot = findCurrentTimeSlot();
+
+  if (currentTimeSlot) {
+    currentTimeSlot.append(currentTimeEl);
+  }
+};
+
+const createCurrentTimeElement = () => {
   const currentTimeEl = document.createElement('div');
   currentTimeEl.className = 'current-time';
 
@@ -19,23 +28,25 @@ export const timeLine = () => {
   lineElem.className = 'current-time__line';
   currentTimeEl.append(lineElem);
 
-  const getTimeSlots = document.querySelectorAll('.calendar__time-slot');
-
   currentTimeEl.dataset.time = new Date().getHours();
   currentTimeEl.dataset.day = new Date().getDate();
   currentTimeEl.dataset.month = getDisplayedMonth(getStartOfWeek(new Date()));
-
   currentTimeEl.style.top = `${new Date().getMinutes() - 2.5}px`;
 
-  return getTimeSlots.forEach(slot => {
+  return currentTimeEl;
+};
+
+const findCurrentTimeSlot = () => {
+  const getTimeSlots = document.querySelectorAll('.calendar__time-slot');
+  const currentHour = new Date().getHours();
+
+  return Array.from(getTimeSlots).find(slot => {
     const slotDay = slot.parentElement.dataset.day;
-    if (
-      slot.dataset.time === currentTimeEl.dataset.time &&
-      slotDay === currentTimeEl.dataset.day &&
-      displayedMonthElem.innerHTML === currentTimeEl.dataset.month
-    ) {
-      slot.append(currentTimeEl);
-    }
+    return (
+      slot.dataset.time === currentHour.toString() &&
+      slotDay === new Date().getDate().toString() &&
+      displayedMonthElem.innerHTML === getDisplayedMonth(getStartOfWeek(new Date()))
+    );
   });
 };
 

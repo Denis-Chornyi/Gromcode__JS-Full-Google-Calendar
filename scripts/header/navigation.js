@@ -11,20 +11,29 @@ const renderCurrentMonth = () => {
   displayedMonthElem.innerHTML = getDisplayedMonth(getItem('displayedWeekStart'));
 };
 
-setItem('displayedWeekStart', getStartOfWeek(new Date()));
+const setInitialDisplayedWeekStart = () => {
+  setItem('displayedWeekStart', getStartOfWeek(new Date()));
+};
 
 const onChangeWeek = event => {
   const buttonElem = event.target.closest('button');
   if (!buttonElem) return;
 
   const { direction } = buttonElem.dataset;
+  const displayedWeekStart = getItem('displayedWeekStart');
 
-  if (direction === 'today') {
-    setItem('displayedWeekStart', getStartOfWeek(new Date()));
-  } else if (direction === 'next') {
-    getItem('displayedWeekStart').setDate(getItem('displayedWeekStart').getDate() + 7);
-  } else if (direction === 'prev') {
-    getItem('displayedWeekStart').setDate(getItem('displayedWeekStart').getDate() - 7);
+  switch (direction) {
+    case 'today':
+      setInitialDisplayedWeekStart();
+      break;
+    case 'next':
+      displayedWeekStart.setDate(displayedWeekStart.getDate() + 7);
+      break;
+    case 'prev':
+      displayedWeekStart.setDate(displayedWeekStart.getDate() - 7);
+      break;
+    default:
+      return;
   }
 
   renderWeek();
@@ -32,6 +41,8 @@ const onChangeWeek = event => {
   renderCurrentMonth();
   timeLine();
 };
+
+setInitialDisplayedWeekStart();
 
 export const initNavigation = () => {
   renderCurrentMonth();

@@ -58,25 +58,29 @@ export const createEventElement = event => {
 export const renderEvents = async () => {
   removeEventsFromCalendar();
 
-  const startDateTime = getItem('displayedWeekStart');
+  const startDateTime = new Date(getItem('displayedWeekStart'));
   const endDateTime = shmoment(startDateTime).add('days', 7).result();
   const newEvents = await getEvents();
   setItem('events', newEvents);
 
-  newEvents
-    .filter(event => {
-      return new Date(event.start) >= startDateTime && new Date(event.end) < endDateTime;
-    })
-    .forEach(event => {
-      const { start } = event;
+  newEvents.forEach(event => {
+    const eventStart = new Date(event.start);
+
+    if (eventStart >= startDateTime && eventStart < endDateTime) {
       const eventElem = createEventElement(event);
-      const slotElem = document.querySelector(
-        `.calendar__day[data-day="${new Date(
-          start
-        ).getDate()}"] .calendar__time-slot[data-time="${new Date(start).getHours()}"]`
-      );
-      slotElem.append(eventElem);
-    });
+      const day = eventStart.getDate();
+      const hour = eventStart.getHours();
+
+      const daySelector = `.calendar__day[data-day="${day}"]`;
+      const slotSelector = `${daySelector} .calendar__time-slot[data-time="${hour}"]`;
+
+      const slotElem = document.querySelector(slotSelector);
+
+      if (slotElem) {
+        slotElem.append(eventElem);
+      }
+    }
+  });
 };
 
 const onDeleteEvent = () => {
@@ -91,28 +95,32 @@ const onDeleteEvent = () => {
     });
 };
 
-export const setEventById = () => {
+export const setEventById = async () => {
   const eventIdToDelete = +getItem('eventIdToDelete');
 
   closePopup();
   openModal();
+
   const getInputValues = document.querySelectorAll('.event-form__field');
   const [titleInput, dateInput, startTimeInput, endTimeInput, descriptionInput] = getInputValues;
 
-  const getEventFromStorage = getEventById(eventIdToDelete);
-  getEventFromStorage.then(res => {
-    const { date, title, description, start, end } = res;
+  const eventFromStorage = await getEventById(eventIdToDelete);
 
-    const startTimeNeeded = `${moment(start).format('HH:mm')}`;
-    const endTimeNeeded = `${moment(end).format('HH:mm')}`;
-    const dateNeeded = `${date}`;
+  if (!eventFromStorage) {
+    return;
+  }
 
-    titleInput.value = title;
-    descriptionInput.value = description;
-    startTimeInput.value = startTimeNeeded;
-    endTimeInput.value = endTimeNeeded;
-    dateInput.value = dateNeeded;
-  });
+  const { date, title, description, start, end } = eventFromStorage;
+
+  const startTimeNeeded = moment(start).format('HH:mm');
+  const endTimeNeeded = moment(end).format('HH:mm');
+  const dateNeeded = moment(date).format('YYYY-MM-DD');
+
+  titleInput.value = title;
+  descriptionInput.value = description;
+  startTimeInput.value = startTimeNeeded;
+  endTimeInput.value = endTimeNeeded;
+  dateInput.value = dateNeeded;
 };
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);

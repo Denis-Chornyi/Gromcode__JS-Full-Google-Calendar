@@ -13,30 +13,40 @@ const colors = [
 
 const colorsEvents = document.querySelector('.events__colors');
 const colorsList = document.querySelector('.events__colors-list');
+
 export const setColorForEvent = () => {
-  colors.map(({ color, id }) => {
-    const colorsItem = document.createElement('li');
-    colorsItem.className = 'events__colors-list-item';
-    colorsItem.textContent = color;
-    colorsItem.dataset.color = id;
-    colorsItem.style.color = id;
+  colors.forEach(({ color, id }) => {
+    const colorsItem = createColorsListItem(color, id);
     colorsList.append(colorsItem);
   });
 };
 
-const toggleColor = e => {
-  const isColorItem = e.target.closest('.events__colors-list-item');
-  if (!isColorItem) return;
+const createColorsListItem = (color, id) => {
+  const colorsItem = document.createElement('li');
+  colorsItem.className = 'events__colors-list-item';
+  colorsItem.textContent = color;
+  colorsItem.dataset.color = id;
+  colorsItem.style.color = id;
+  return colorsItem;
+};
 
-  colorsEvents.dataset.id = getItem('eventIdToDelete');
-  const listData = colors.find(elem => elem.id === e.target.dataset.color);
+const toggleColor = (event) => {
+  const colorItem = event.target.closest('.events__colors-list-item');
+  if (!colorItem) return;
 
-  [...document.querySelectorAll('.event')].map(event => {
-    if (event.dataset.eventId === getItem('eventIdToDelete')) {
-      event.style.backgroundColor = listData.id;
+  const eventIdToDelete = getItem('eventIdToDelete');
+  colorsEvents.dataset.id = eventIdToDelete;
+
+  const selectedColor = colors.find((color) => color.id === colorItem.dataset.color);
+
+  const eventsToUpdate = document.querySelectorAll('.event');
+  eventsToUpdate.forEach((event) => {
+    if (event.dataset.eventId === eventIdToDelete) {
+      event.style.backgroundColor = selectedColor.id;
     }
   });
 };
+
 colorsList.addEventListener('click', toggleColor);
 
 const openColorsList = () => {

@@ -25,7 +25,15 @@ export const renderHeader = () => {
 };
 
 export const createEventBtn = document.querySelector('.create-event-btn');
-createEventBtn.addEventListener('click', () => {
-  document.querySelector('.event-form__submit-btn').textContent = 'Create';
-  openModal();
-});
+
+const handleClick = () => {
+  const submitBtn = document.querySelector('.event-form__submit-btn');
+  if (submitBtn) {
+    submitBtn.textContent = 'Create';
+    openModal();
+  } else {
+    return;
+  }
+};
+
+createEventBtn.addEventListener('click', handleClick);

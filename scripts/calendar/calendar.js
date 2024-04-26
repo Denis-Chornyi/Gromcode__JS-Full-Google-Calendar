@@ -27,13 +27,18 @@ export const renderWeek = () => {
 };
 
 export const renderDecoration = () => {
-  const slotOfDecoration = createNumbersArray(1, 8)
-    .map(num => `<div class="calendar__week-decoration-slot" data-number="${num}"></div>`)
-    .join('');
-  document.querySelector('.calendar__week-decoration').innerHTML = slotOfDecoration;
+  const slotOfDecoration = createNumbersArray(1, 8).map(num => {
+    const slot = document.createElement('div');
+    slot.classList.add('calendar__week-decoration-slot');
+    slot.dataset.number = num;
+    return slot;
+  });
 
-  const slotDecoration = document.querySelector('.calendar__week-decoration-slot');
-  if (slotDecoration.dataset.number === '1') {
-    slotDecoration.textContent = 'GMT+02';
-  }
+  const decorationContainer = document.querySelector('.calendar__week-decoration');
+  slotOfDecoration.forEach(slot => {
+    decorationContainer.appendChild(slot);
+    if (slot.dataset.number === '1') {
+      slot.textContent = 'GMT+02';
+    }
+  });
 };
