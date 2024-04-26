@@ -1,8 +1,9 @@
 import { getItem } from '../common/storage.js';
-import { daysOfWeek, generateWeekRange } from '../common/time.utils.js';
+import { daysOfWeek, generateWeekRange } from '../common/utils.js';
 import { openModal } from '../common/modal.js';
 
 const calendarHeader = document.querySelector('.calendar__header');
+
 export const renderHeader = () => {
   const headerWeek = generateWeekRange(getItem('displayedWeekStart'))
     .map(dayOfWeekNumber => {

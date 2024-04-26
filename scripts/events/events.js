@@ -1,7 +1,8 @@
-import { deleteEvent, getEventById, getEvents, getItem, setItem } from '../common/storage.js';
+import { getItem, setItem } from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 import { openModal } from '../common/modal.js';
+import { deleteEvent, getEventById, getEvents } from '../common/gateways.js';
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -16,6 +17,7 @@ const handleEventClick = event => {
   openPopup(event.clientX, event.clientY);
   setItem('eventIdToDelete', isEvent.dataset.eventId);
 };
+
 const removeEventsFromCalendar = () => {
   const eventsElems = document.querySelectorAll('.event');
   if (eventsElems) {
@@ -76,6 +78,7 @@ export const renderEvents = async () => {
       slotElem.append(eventElem);
     });
 };
+
 const onDeleteEvent = () => {
   const eventIdToDelete = +getItem('eventIdToDelete');
 

@@ -1,4 +1,4 @@
-import { createNumbersArray } from '../common/createNumbersArray.js';
+import { createNumbersArray } from "../common/utils.js";
 
 export const renderTimescale = () => {
   const hoursOfDay = createNumbersArray(1, 23)

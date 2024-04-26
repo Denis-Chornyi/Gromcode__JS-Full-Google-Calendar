@@ -1,7 +1,8 @@
-import { createEvent, getEvents, getItem, setItem, updateEvent } from '../common/storage.js';
+import { getItem, setItem } from '../common/storage.js';
 import { renderEvents } from './events.js';
-import { getDateTime } from '../common/time.utils.js';
+import { getDateTime } from '../common/utils.js';
 import { closeModal } from '../common/modal.js';
+import { createEvent, getEvents, updateEvent } from '../common/gateways.js';
 
 const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');
@@ -13,14 +14,7 @@ export const onCloseEventForm = () => {
 
 const onCreateEvent = event => {
   event.preventDefault();
-  const formDate = Array.from(new FormData(eventFormElem)).reduce((acc, field) => {
-    const [name, value] = field;
-
-    return {
-      ...acc,
-      [name]: value
-    };
-  }, {});
+  const formDate = Object.fromEntries(new FormData(eventFormElem));
   const { date, startTime, endTime, title, description } = formDate;
 
   const newEvents = {
@@ -28,27 +22,21 @@ const onCreateEvent = event => {
     description,
     start: getDateTime(date, startTime),
     end: getDateTime(date, endTime),
-    date: date
+    date
   };
-  if (document.querySelector('.event-form__submit-btn').textContent === 'Create') {
-    createEvent(newEvents)
-      .then(() => getEvents())
-      .then(newEventsList => {
-        setItem('events', newEventsList);
-        onCloseEventForm();
-        renderEvents();
-      });
-  } else {
-    const eventIdToDelete = +getItem('eventIdToDelete');
 
-    updateEvent(eventIdToDelete, newEvents)
-      .then(() => getEvents())
-      .then(newEventsList => {
-        setItem('events', newEventsList);
-        onCloseEventForm();
-        renderEvents();
-      });
-  }
+  const action =
+    document.querySelector('.event-form__submit-btn').textContent === 'Create'
+      ? createEvent(newEvents)
+      : updateEvent(+getItem('eventIdToDelete'), newEvents);
+
+  action
+    .then(() => getEvents())
+    .then(newEventsList => {
+      setItem('events', newEventsList);
+      onCloseEventForm();
+      renderEvents();
+    });
 };
 
 export const initEventForm = () => {

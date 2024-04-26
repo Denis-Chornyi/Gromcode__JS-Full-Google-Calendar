@@ -57,3 +57,11 @@ export const getDisplayedMonth = date => {
     ? `${monthsNames[startMonth]} - ${monthsNames[endMonth]} ${startYear}`
     : `${monthsNames[startMonth]} ${startYear} - ${monthsNames[endMonth]} ${endYear}`;
 };
+
+export const createNumbersArray = (from, to) => {
+  const result = [];
+  for (let i = from; i <= to; i += 1) {
+    result.push(i);
+  }
+  return result;
+};

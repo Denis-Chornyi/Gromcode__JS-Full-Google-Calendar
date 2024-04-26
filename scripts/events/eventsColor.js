@@ -26,9 +26,7 @@ export const setColorForEvent = () => {
 
 const toggleColor = e => {
   const isColorItem = e.target.closest('.events__colors-list-item');
-  if (!isColorItem) {
-    return;
-  }
+  if (!isColorItem) return;
 
   colorsEvents.dataset.id = getItem('eventIdToDelete');
   const listData = colors.find(elem => elem.id === e.target.dataset.color);
