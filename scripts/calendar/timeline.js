@@ -1,4 +1,4 @@
-import { getDisplayedMonth } from '../common/time.utils.js';
+import { getDisplayedMonth, getStartOfWeek } from '../common/time.utils.js';
 
 const displayedMonthElem = document.querySelector('.navigation__displayed-month');
 
@@ -23,10 +23,9 @@ export const timeLine = () => {
 
   currentTimeEl.dataset.time = new Date().getHours();
   currentTimeEl.dataset.day = new Date().getDate();
-  currentTimeEl.dataset.month = getDisplayedMonth(new Date());
+  currentTimeEl.dataset.month = getDisplayedMonth(getStartOfWeek(new Date()));
 
   currentTimeEl.style.top = `${new Date().getMinutes() - 2.5}px`;
-
   return getTimeSlots.forEach(slot => {
     const slotDay = slot.parentElement.dataset.day;
     if (
@@ -40,4 +39,3 @@ export const timeLine = () => {
 };
 
 setInterval(timeLine, 1000 * 60);
-
