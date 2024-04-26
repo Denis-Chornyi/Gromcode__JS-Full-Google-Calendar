@@ -6,12 +6,12 @@ import { closeModal } from '../common/modal.js';
 const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');
 
-export function onCloseEventForm() {
+export const onCloseEventForm = () => {
   closeModal();
   eventFormElem.reset();
-}
+};
 
-function onCreateEvent(event) {
+const onCreateEvent = event => {
   event.preventDefault();
   const formDate = Array.from(new FormData(eventFormElem)).reduce((acc, field) => {
     const [name, value] = field;
@@ -49,9 +49,9 @@ function onCreateEvent(event) {
         renderEvents();
       });
   }
-}
+};
 
-export function initEventForm() {
+export const initEventForm = () => {
   eventFormElem.addEventListener('submit', onCreateEvent);
   closeEventFormBtn.addEventListener('click', onCloseEventForm);
-}
+};
