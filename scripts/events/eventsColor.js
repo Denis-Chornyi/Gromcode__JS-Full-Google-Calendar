@@ -1,4 +1,7 @@
-import { getItem } from '../common/storage.js';
+import { getEvents, updateEventColor } from '../common/gateways.js';
+import { getItem, setItem } from '../common/storage.js';
+import { onCloseEventForm } from './createEvent.js';
+import { renderEvents } from './events.js';
 
 const colors = [
   { color: 'Light blue', id: '#208ce4' },
@@ -11,7 +14,7 @@ const colors = [
   { color: 'Dark yellow', id: '#fec804' }
 ];
 
-const colorsEvents = document.querySelector('.events__colors');
+export const colorsEvents = document.querySelector('.events__colors');
 const colorsList = document.querySelector('.events__colors-list');
 
 export const setColorForEvent = () => {
@@ -30,21 +33,28 @@ const createColorsListItem = (color, id) => {
   return colorsItem;
 };
 
-const toggleColor = (event) => {
+const toggleColor = event => {
   const colorItem = event.target.closest('.events__colors-list-item');
   if (!colorItem) return;
 
   const eventIdToDelete = getItem('eventIdToDelete');
   colorsEvents.dataset.id = eventIdToDelete;
 
-  const selectedColor = colors.find((color) => color.id === colorItem.dataset.color);
+  const selectedColorId = colorItem.dataset.color;
 
-  const eventsToUpdate = document.querySelectorAll('.event');
-  eventsToUpdate.forEach((event) => {
-    if (event.dataset.eventId === eventIdToDelete) {
-      event.style.backgroundColor = selectedColor.id;
-    }
-  });
+  updateEventColor(+eventIdToDelete, selectedColorId)
+    .then(() => {
+      const eventsToUpdate = document.querySelectorAll(
+        `.event[data-event-id=" ${eventIdToDelete} "]`
+      );
+      eventsToUpdate.forEach(eventToUpdate => {
+        eventToUpdate.style.backgroundColor = selectedColorId;
+      });
+      renderEvents();
+    })
+    .catch(error => {
+      console.error('Failed to update the event color:', error);
+    });
 };
 
 colorsList.addEventListener('click', toggleColor);

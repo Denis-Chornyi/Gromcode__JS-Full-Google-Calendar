@@ -30,3 +30,13 @@ export const deleteEvent = eventId =>
 
 export const getEventById = eventId =>
   fetch(`${baseUrl}/${eventId}`).then(response => response.json());
+
+export const updateEventColor = (eventId, colorId) => {
+  return fetch(`${baseUrl}/${eventId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ colorId })
+  });
+};

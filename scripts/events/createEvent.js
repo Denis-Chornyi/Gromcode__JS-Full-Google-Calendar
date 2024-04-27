@@ -3,6 +3,7 @@ import { renderEvents } from './events.js';
 import { getDateTime } from '../common/utils.js';
 import { closeModal } from '../common/modal.js';
 import { createEvent, getEvents, updateEvent } from '../common/gateways.js';
+import { colorsEvents } from './eventsColor.js';
 
 const eventFormElem = document.querySelector('.event-form');
 const closeEventFormBtn = document.querySelector('.create-event__close-btn');
@@ -15,14 +16,15 @@ export const onCloseEventForm = () => {
 const onCreateEvent = event => {
   event.preventDefault();
   const formDate = Object.fromEntries(new FormData(eventFormElem));
-  const { date, startTime, endTime, title, description } = formDate;
+  const { date, startTime, endTime, title, description, colorId} = formDate;
 
   const newEvents = {
     title,
     description,
     start: getDateTime(date, startTime),
     end: getDateTime(date, endTime),
-    date
+    date,
+    colorId
   };
 
   const action =
