@@ -39,7 +39,6 @@ const createCurrentTimeElement = () => {
 const findCurrentTimeSlot = () => {
   const getTimeSlots = document.querySelectorAll('.calendar__time-slot');
   const currentHour = new Date().getHours();
-
   return Array.from(getTimeSlots).find(slot => {
     const slotDay = slot.parentElement.dataset.day;
     return (

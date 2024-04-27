@@ -100,7 +100,6 @@ export const setEventById = async () => {
   const eventIdToDelete = +getItem('eventIdToDelete');
 
   closePopup();
-  openModal();
 
   const getInputValues = document.querySelectorAll('.event-form__field');
   const [titleInput, dateInput, startTimeInput, endTimeInput, descriptionInput] = getInputValues;
@@ -110,6 +109,8 @@ export const setEventById = async () => {
   if (!eventFromStorage) {
     return;
   }
+
+  openModal();
 
   const { date, title, description, start, end } = eventFromStorage;
 
@@ -132,3 +133,44 @@ editEventBtn.addEventListener('click', () => {
   setEventById();
   document.querySelector('.event-form__submit-btn').textContent = 'Edit';
 });
+
+// const displaySlotData = slotData => {
+//   closePopup();
+//   openModal();
+
+//   const getInputValues = document.querySelectorAll('.event-form__field');
+//   const [titleInput, dateInput, startTimeInput, endTimeInput, descriptionInput] = getInputValues;
+//   const weekDay = document.querySelector('.day-label__day-number')
+//   console.log(weekDay.innerHTML)
+
+//   const { date, startTime, endTime } = slotData;
+//   date = `${weekDay.innerHTML}`
+//   const startTimeFormatted = moment(startTime).format('HH:mm');
+//   const endTimeFormatted = moment(endTime).format('HH:mm');
+//   const dateFormatted = moment(date).format('YYYY-MM-DD');
+
+//   // Устанавливаем значения в поля формы
+//   titleInput.value = ''; // Очищаем поле заголовка, чтобы пользователь мог ввести новый заголовок
+//   descriptionInput.value = ''; // Очищаем поле описания, чтобы пользователь мог ввести новое описание
+//   startTimeInput.value = startTimeFormatted;
+//   endTimeInput.value = endTimeFormatted;
+//   dateInput.value = dateFormatted;
+// };
+
+// // Пример использования: При клике на слот календаря вызываем функцию displaySlotData и передаем данные о слоте
+// const calendarWeek = document.querySelector('.calendar__week');
+
+// const getSlotInform = event => {
+//   const slot = event.target.closest('.calendar__time-slot');
+//   if (!slot) return;
+
+//   const slotData = {
+//     date: slot.dataset.date,
+//     startTime: slot.dataset.startTime,
+//     endTime: slot.dataset.endTime
+//   };
+
+//   displaySlotData(slotData);
+// };
+
+// calendarWeek.addEventListener('click', getSlotInform)
