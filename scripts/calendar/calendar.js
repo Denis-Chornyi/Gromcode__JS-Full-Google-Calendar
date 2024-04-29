@@ -1,44 +1,48 @@
 import { getItem } from '../common/storage.js';
-import { createNumbersArray, generateWeekRange } from '../common/utils.js';
+import { createNumbersArray, generateWeekRange, getStartOfWeek } from '../common/utils.js';
 import { renderEvents } from '../events/events.js';
 
-const generateDay = () => {
-  const hoursOfDay = createNumbersArray(0, 23)
-    .map(
-      timeSlot =>
-        `<div class="calendar__time-slot"
-        data-time="${timeSlot}">   
-          </div>`
-    )
-    .join('');
-  return hoursOfDay;
-};
+const getWeekElem = document.querySelector('.calendar__week');
 
 export const renderWeek = () => {
-  const startDate = getItem('displayedWeekStart');
-  const daysList = generateWeekRange(startDate);
-  const dayTemplateString = generateDay();
-  const weekElementString = daysList
-    .map(day => `<div class="calendar__day" data-day="${day.getDate()}">${dayTemplateString}</div>`)
-    .join('');
+  const getDatesRange = generateWeekRange(new Date(getStartOfWeek(getItem('displayedWeekStart'))));
 
-  document.querySelector('.calendar__week').innerHTML = weekElementString;
+  const result = getDatesRange.map(dayNumb => {
+    const newDivForDay = document.createElement('div');
+    newDivForDay.classList.add('calendar__day');
+    newDivForDay.dataset.day = dayNumb.getDate();
+
+    const newSlots = createNumbersArray(0, 23).map(timeNumber => {
+      const newTimeSlotEL = document.createElement('div');
+      newTimeSlotEL.classList.add('calendar__time-slot');
+      newTimeSlotEL.setAttribute('data-time', timeNumber);
+
+     
+      newTimeSlotEL.setAttribute('data-day', dayNumb.getDate());
+      newTimeSlotEL.setAttribute('data-month', dayNumb.getMonth() + 1); 
+      newTimeSlotEL.setAttribute('data-year', dayNumb.getFullYear());
+
+      newTimeSlotEL.innerText = ``;
+      return newTimeSlotEL;
+    });
+
+    newDivForDay.append(...newSlots);
+    return newDivForDay;
+  });
+
+  getWeekElem.innerHTML = '';
+  getWeekElem.prepend(...result);
   renderEvents();
 };
 
 export const renderDecoration = () => {
-  const slotOfDecoration = createNumbersArray(1, 8).map(num => {
-    const slot = document.createElement('div');
-    slot.classList.add('calendar__week-decoration-slot');
-    slot.dataset.number = num;
-    return slot;
-  });
+  const slotOfDecoration = createNumbersArray(1, 8)
+    .map(num => `<div class="calendar__week-decoration-slot" data-number="${num}"></div>`)
+    .join('');
+  document.querySelector('.calendar__week-decoration').innerHTML = slotOfDecoration;
 
-  const decorationContainer = document.querySelector('.calendar__week-decoration');
-  slotOfDecoration.forEach(slot => {
-    decorationContainer.appendChild(slot);
-    if (slot.dataset.number === '1') {
-      slot.textContent = 'GMT+02';
-    }
-  });
+  const slotDecoration = document.querySelector('.calendar__week-decoration-slot');
+  if (slotDecoration.dataset.number === '1') {
+    slotDecoration.textContent = 'GMT+02';
+  }
 };

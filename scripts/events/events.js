@@ -1,8 +1,10 @@
+
 import { getItem, setItem } from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 import { openModal } from '../common/modal.js';
 import { deleteEvent, getEventById, getEvents } from '../common/gateways.js';
+
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -10,7 +12,7 @@ export const editEventBtn = document.querySelector('.edit__event-btn');
 
 const handleEventClick = event => {
   event.preventDefault();
-  let isEvent = event.target.closest('.event');
+  const isEvent = event.target.closest('.event');
   if (!isEvent) {
     return;
   }
@@ -123,6 +125,7 @@ export const setEventById = async () => {
   startTimeInput.value = startTimeNeeded;
   endTimeInput.value = endTimeNeeded;
   dateInput.value = dateNeeded;
+  console.log(dateNeeded);
 };
 
 deleteEventBtn.addEventListener('click', onDeleteEvent);
@@ -133,4 +136,5 @@ editEventBtn.addEventListener('click', () => {
   setEventById();
   document.querySelector('.event-form__submit-btn').textContent = 'Edit';
 });
+
 

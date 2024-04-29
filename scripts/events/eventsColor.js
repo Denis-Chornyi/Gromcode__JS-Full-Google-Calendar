@@ -1,6 +1,6 @@
-import { getEvents, updateEventColor } from '../common/gateways.js';
-import { getItem, setItem } from '../common/storage.js';
-import { onCloseEventForm } from './createEvent.js';
+import { updateEventColor } from '../common/gateways.js';
+import { getItem } from '../common/storage.js';
+
 import { renderEvents } from './events.js';
 
 const colors = [

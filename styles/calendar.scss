@@ -13,10 +13,12 @@
     background-color: $color-text-white;
     z-index: 11;
   }
+
   &__body {
     position: relative;
     top: $unit * 60.5;
   }
+  
   &__week-decoration {
     display: flex;
     position: fixed;
@@ -46,7 +48,6 @@
 
   &__week-container {
     display: flex;
-    top: $unit * 92;
     width: 100%;
   }
 

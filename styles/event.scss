@@ -55,12 +55,12 @@
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.7490196078);
   border-radius: 8px;
 
-  &-list {
+  &__colors-list {
     list-style: none;
     padding: 0;
     padding: 0 $unit * 2;
 
-    &-item {
+    &__colors-list-item {
       margin-bottom: $unit * 4;
       padding: $unit;
       cursor: pointer;

@@ -31,9 +31,8 @@ const handleClick = () => {
   if (submitBtn) {
     submitBtn.textContent = 'Create';
     openModal();
-  } else {
-    return;
   }
+  return;
 };
 
 createEventBtn.addEventListener('click', handleClick);
