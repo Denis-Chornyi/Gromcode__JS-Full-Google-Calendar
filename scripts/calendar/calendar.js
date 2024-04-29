@@ -34,6 +34,14 @@ export const renderWeek = () => {
   renderEvents();
 };
 
+const getCurrentGMTOffset = () => {
+  const offsetMinutes = new Date().getTimezoneOffset();
+  const offsetHours = Math.abs(offsetMinutes / 60);
+  const offsetSign = offsetMinutes < 0 ? '+' : '-';
+  const offsetString = `GMT${offsetSign}${offsetHours.toString().padStart(2, '0')}`;
+  return offsetString;
+};
+
 export const renderDecoration = () => {
   const slotOfDecoration = createNumbersArray(1, 8)
     .map(num => `<div class="calendar__week-decoration-slot" data-number="${num}"></div>`)
@@ -42,6 +50,6 @@ export const renderDecoration = () => {
 
   const slotDecoration = document.querySelector('.calendar__week-decoration-slot');
   if (slotDecoration.dataset.number === '1') {
-    slotDecoration.textContent = 'GMT+02';
+    slotDecoration.textContent = getCurrentGMTOffset();
   }
 };

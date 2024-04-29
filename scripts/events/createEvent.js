@@ -12,10 +12,21 @@ export const onCloseEventForm = () => {
   eventFormElem.reset();
 };
 
+const maxEventDuration = 6 * 60 * 60 * 1000;
+
 const onCreateEvent = event => {
   event.preventDefault();
   const formDate = Object.fromEntries(new FormData(eventFormElem));
   const { date, startTime, endTime, title, description, colorId } = formDate;
+
+  const startDateTime = getDateTime(date, startTime);
+  const endDateTime = getDateTime(date, endTime);
+  const eventDuration = endDateTime - startDateTime;
+
+  if (eventDuration > maxEventDuration) {
+    alert('Event duration cannot exceed 6 hours');
+    return;
+  }
 
   const newEvents = {
     title,
