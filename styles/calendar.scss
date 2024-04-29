@@ -1,7 +1,11 @@
 .calendar {
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   z-index: 3;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
 
   &__header {
     display: flex;
@@ -18,7 +22,7 @@
     position: relative;
     top: $unit * 60.5;
   }
-  
+
   &__week-decoration {
     display: flex;
     position: fixed;

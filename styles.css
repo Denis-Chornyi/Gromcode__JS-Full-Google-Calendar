@@ -97,9 +97,12 @@
 }
 
 .calendar {
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   z-index: 3;
+}
+.calendar::-webkit-scrollbar {
+  width: 0 !important;
 }
 .calendar__header {
   display: flex;
