@@ -17,9 +17,8 @@ export const renderWeek = () => {
       newTimeSlotEL.classList.add('calendar__time-slot');
       newTimeSlotEL.setAttribute('data-time', timeNumber);
 
-     
       newTimeSlotEL.setAttribute('data-day', dayNumb.getDate());
-      newTimeSlotEL.setAttribute('data-month', dayNumb.getMonth() + 1); 
+      newTimeSlotEL.setAttribute('data-month', dayNumb.getMonth() + 1);
       newTimeSlotEL.setAttribute('data-year', dayNumb.getFullYear());
 
       newTimeSlotEL.innerText = ``;

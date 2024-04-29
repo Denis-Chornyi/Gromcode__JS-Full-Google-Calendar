@@ -1,4 +1,4 @@
-import { openModal } from "../common/modal.js";
+import { openModal } from '../common/modal.js';
 
 export const displaySlotData = slotData => {
   openModal();
@@ -18,7 +18,6 @@ export const displaySlotData = slotData => {
   endTimeInput.value = endTimeFormatted;
   dateInput.value = dateFormatted;
 };
-
 
 const getSlotInform = event => {
   const slot = event.target.closest('.calendar__time-slot');
