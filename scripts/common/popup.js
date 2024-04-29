@@ -1,13 +1,13 @@
 const popupElem = document.querySelector('.popup');
 const popupContentElem = document.querySelector('.popup__content');
-const colorList = document.querySelector('.events__colors');
+const colorList = document.querySelector('.events-colors');
 
 export const openPopup = (x, y) => {
   popupElem.classList.remove('hidden');
   popupContentElem.style.top = `${y}px`;
   popupContentElem.style.left = `${x}px`;
-  colorList.style.top = `${y}px`;
-  colorList.style.left = `${x + 135}px`;
+  colorList.style.top = `${y + 132}px`;
+  colorList.style.left = `${x}px`;
 };
 
 export const closePopup = () => {

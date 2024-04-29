@@ -14,8 +14,8 @@ const colors = [
   { color: 'Dark yellow', id: '#fec804' }
 ];
 
-export const colorsEvents = document.querySelector('.events__colors');
-const colorsList = document.querySelector('.events__colors-list');
+export const colorsEvents = document.querySelector('.events-colors');
+const colorsList = document.querySelector('.events-colors__list');
 
 export const setColorForEvent = () => {
   colors.forEach(({ color, id }) => {
@@ -26,7 +26,7 @@ export const setColorForEvent = () => {
 
 const createColorsListItem = (color, id) => {
   const colorsItem = document.createElement('li');
-  colorsItem.className = 'events__colors-list-item';
+  colorsItem.className = 'events-colors__list-item';
   colorsItem.textContent = color;
   colorsItem.dataset.color = id;
   colorsItem.style.color = id;
@@ -34,7 +34,7 @@ const createColorsListItem = (color, id) => {
 };
 
 const toggleColor = event => {
-  const colorItem = event.target.closest('.events__colors-list-item');
+  const colorItem = event.target.closest('.events-colors__list-item');
   if (!colorItem) return;
 
   const eventIdToDelete = getItem('eventIdToDelete');
@@ -63,4 +63,4 @@ const openColorsList = () => {
   colorsEvents.style.display = 'block';
 };
 
-document.querySelector('.events__colors-btn').addEventListener('click', openColorsList);
+document.querySelector('.events-colors__btn').addEventListener('click', openColorsList);

@@ -338,9 +338,9 @@ input::-webkit-calendar-picker-indicator {
   margin-top: 0;
 }
 
-.events__colors {
+.events-colors {
   display: none;
-  width: 110px;
+  width: 130px;
   height: 130px;
   position: absolute;
   overflow: auto;
@@ -349,17 +349,17 @@ input::-webkit-calendar-picker-indicator {
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.7490196078);
   border-radius: 8px;
 }
-.events__colors__colors-list {
+.events-colors__list {
   list-style: none;
   padding: 0;
   padding: 0 4px;
 }
-.events__colors__colors-list__colors-list-item {
+.events-colors__list-item {
   margin-bottom: 8px;
   padding: 2px;
   cursor: pointer;
 }
-.events__colors__colors-list__colors-list-item:hover {
+.events-colors__list-item:hover {
   background-color: rgba(39, 227, 230, 0.2);
 }
 
