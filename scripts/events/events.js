@@ -1,10 +1,8 @@
-
 import { getItem, setItem } from '../common/storage.js';
 import shmoment from '../common/shmoment.js';
 import { openPopup, closePopup } from '../common/popup.js';
 import { openModal } from '../common/modal.js';
 import { deleteEvent, getEventById, getEvents } from '../common/gateways.js';
-
 
 const weekElem = document.querySelector('.calendar__week');
 const deleteEventBtn = document.querySelector('.delete-event-btn');
@@ -136,5 +134,3 @@ editEventBtn.addEventListener('click', () => {
   setEventById();
   document.querySelector('.event-form__submit-btn').textContent = 'Edit';
 });
-
-
