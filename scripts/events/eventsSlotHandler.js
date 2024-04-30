@@ -1,16 +1,16 @@
 import { openModal } from '../common/modal.js';
 
-export const displaySlotData = slotData => {
+const displaySlotData = slotData => {
   openModal();
 
   const getInputValues = document.querySelectorAll('.event-form__field');
   const [titleInput, dateInput, startTimeInput, endTimeInput, descriptionInput] = getInputValues;
 
-  let { date, startTime, endTime } = slotData;
-  date = `${date}`;
+  const { date, startTime, endTime } = slotData;
+  
   const startTimeFormatted = moment(startTime, 'HH:mm').format('HH:mm');
   const endTimeFormatted = moment(endTime, 'HH:mm').format('HH:mm');
-  const dateFormatted = date;
+  const dateFormatted = date.toString()
 
   titleInput.value = '';
   descriptionInput.value = '';
@@ -36,7 +36,7 @@ const getSlotInform = event => {
   document.querySelector('.event-form__submit-btn').textContent = 'Create';
 };
 
-export const handleCalendarClick = event => {
+const handleCalendarClick = event => {
   const eventElement = event.target.closest('.event');
   if (eventElement) {
     return;

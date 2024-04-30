@@ -47,7 +47,7 @@ input::-webkit-calendar-picker-indicator {
     background-color: $color-black;
     margin-bottom: $unit * 2;
 
-    &-bottom {
+    &_bottom {
       width: $unit * 6;
     }
   }

@@ -187,14 +187,12 @@
   margin: 0;
   margin-top: -3px;
 }
-
 .current-time__circle {
   width: 11px;
   height: 10px;
   border-radius: 100%;
   background-color: #ff0000;
 }
-
 .current-time__line {
   height: 2px;
   width: 100%;
@@ -280,7 +278,7 @@ input::-webkit-calendar-picker-indicator {
   background-color: #000;
   margin-bottom: 4px;
 }
-.event-form__burger-menu-bottom {
+.event-form__burger-menu_bottom {
   width: 12px;
 }
 .event-form__textarea {
@@ -326,12 +324,12 @@ input::-webkit-calendar-picker-indicator {
   border-color: #208ce4;
   cursor: pointer;
 }
+.popup__btn:hover {
+  background-color: rgba(39, 227, 230, 0.2);
+}
 .popup__btn-description {
   margin: 0;
   margin-left: 14px;
-}
-.popup__btn:hover {
-  background-color: rgba(39, 227, 230, 0.2);
 }
 
 .edit__event-btn {

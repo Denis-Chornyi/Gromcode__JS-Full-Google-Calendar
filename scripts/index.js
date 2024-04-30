@@ -8,8 +8,7 @@ import { initEventForm } from './events/createEvent.js';
 import { timeLine } from './calendar/timeline.js';
 import { renderEvents } from './events/events.js';
 import { setColorForEvent } from './events/eventsColor.js';
-import { } from './events/eventsSlotHandler.js';
-
+import {} from './events/eventsSlotHandler.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderDecoration();
