@@ -67,6 +67,8 @@
   &__list-item {
     margin-bottom: $unit * 4;
     padding: $unit;
+    border: 1px solid;   
+    text-align: center;
     cursor: pointer;
 
     &:hover {

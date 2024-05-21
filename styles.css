@@ -355,6 +355,8 @@ input::-webkit-calendar-picker-indicator {
 .events-colors__list-item {
   margin-bottom: 8px;
   padding: 2px;
+  border: 1px solid;
+  text-align: center;
   cursor: pointer;
 }
 .events-colors__list-item:hover {
