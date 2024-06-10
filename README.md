@@ -1,11 +1,5 @@
 ## Project: Google calendar
 
-### To start:
-
-1. clone the repo
-2. install LTS [NodeJS](https://nodejs.org/en/)
-3. run `npm install` to to use eslint in the project
-
 ### [GitHub Page](https://denis-chornyi.github.io/Project-Google-calendar/)
 
 ### The tech stack is:
@@ -15,3 +9,7 @@
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Sass (Scss)](https://sass-lang.com/documentation/)
 - [BEM methodology](https://en.bem.info/methodology/)
+
+### Author
+
+- [Denis Chornyi](https://github.com/Denis-Chornyi)
